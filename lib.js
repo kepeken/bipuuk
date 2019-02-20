@@ -60,18 +60,26 @@ class Node {
 
   static fromString(src) {
     if (typeof src !== "string") throw new TypeError("invalid arguments");
-    src = src.replace(/[^()]/g, "");
-    let pos = -1;
+    src = src.replace(/[^()\d]/g, "");
+    let pos = 0;
     function read() {
-      pos++;
       if (src[pos] === "(") {
+        pos += 1;
         const left = read();
         if (src[pos] === ")") {
+          pos += 1;
           const right = read();
           return new Node(left, right);
         } else {
           throw new SyntaxError("unexpected end of input");
         }
+      } else if ("0" <= src[pos] && src[pos] <= "9") {
+        let num = "";
+        while ("0" <= src[pos] && src[pos] <= "9") {
+          num += src[pos];
+          pos += 1;
+        }
+        return Node.fromInt(num);
       } else {
         return new Node();
       }
@@ -229,7 +237,7 @@ class Node {
     ];
     while (curr.length) {
       let next = [];
-      curr = curr.filter(({ node }) => !node.left.isNull || !node.right.isNull);
+      curr = curr.filter(({ node }) => !node.isNull && (!node.left.isNull || !node.right.isNull));
       curr.forEach(({ node, r: r0, theta: theta0 }, idx) => {
         let r1 = r0 + dr;
         d += `M ${polar(r0, theta0)}\n`;

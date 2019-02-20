@@ -30,9 +30,11 @@
   <h1>bipuuk parser</h1>
   <p><a href="https://kepeken.gitbook.io/bipuuk/">Docs</a> | <a href="https://github.com/kepeken/bipuuk">Repo</a></p>
   <div>
-    <input type="text" id="$number" placeholder="自然数表記">
+    <input type="text" id="$input" placeholder="input">
     <br>
-    <input type="text" id="$dyck" placeholder="括弧表記">
+    <pre id="$error"></pre>
+    <pre id="$number"></pre>
+    <pre id="$dyck"></pre>
     <br>
     <pre id="$circle" class="border"></pre>
     <br>
@@ -45,25 +47,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/5.2.1/big.min.js"></script>
   <script src="lib.js"></script>
   <script>
-    $number.oninput = function () {
-      try {
-        const node = Node.fromInt(this.value);
-        $dyck.value = node.toString();
-        $tree.textContent = node.print();
-        $htree.innerHTML = node.printh();
-        $zigzag.textContent = node.printz();
-        $circle.innerHTML = node.printc();
-      } catch (e) { }
-    };
-    $dyck.oninput = function () {
+    $input.oninput = function () {
       try {
         const node = Node.fromString(this.value);
-        $number.value = node.toInt().toFixed();
+        $error.textContent = "";
+        $dyck.textContent = node.toString();
+        $number.textContent = node.toInt().toFixed();
         $tree.textContent = node.print();
         $htree.innerHTML = node.printh();
         $zigzag.textContent = node.printz();
         $circle.innerHTML = node.printc();
-      } catch (e) { }
+      } catch (e) {
+        $error.textContent = e;
+      }
     };
   </script>
 </body>
