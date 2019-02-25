@@ -86,7 +86,7 @@ class Node {
     }
     const val = read();
     if (pos !== src.length) {
-      throw SyntaxError("unexpected token )");
+      throw SyntaxError("unexpected token " + src[pos]);
     } else {
       return val;
     }
