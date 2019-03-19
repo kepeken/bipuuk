@@ -1,4 +1,3 @@
 # Summary
 
-* [Introduction](README.md)
-
+* [概要](README.md)
