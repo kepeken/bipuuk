@@ -1,20 +1,31 @@
-module Main exposing (..)
+module Main exposing (main)
 
+import Bipuuk
 import Browser
-import Html exposing (Html, text, div, h1, img)
-import Html.Attributes exposing (src)
+import Html exposing (Html, div, h1, img, pre, text, textarea)
+import Html.Attributes exposing (src, value)
+import Html.Events exposing (onInput)
+
 
 
 ---- MODEL ----
 
 
 type alias Model =
-    {}
+    { text : String
+    , tree : Bipuuk.Tree
+    , error : Maybe String
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { text = ""
+      , tree = Bipuuk.empty
+      , error = Nothing
+      }
+    , Cmd.none
+    )
 
 
 
@@ -23,11 +34,24 @@ init =
 
 type Msg
     = NoOp
+    | InputText String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+        InputText text ->
+            ( case Bipuuk.fromString text of
+                Ok tree ->
+                    { model | text = text, tree = tree, error = Nothing }
+
+                Err error ->
+                    { model | text = text, error = Just error }
+            , Cmd.none
+            )
 
 
 
@@ -37,8 +61,9 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
+        [ textarea [ value model.text, onInput InputText ] []
+        , pre [] [ Bipuuk.toDigits model.tree |> text ]
+        , pre [] [ model.error |> Maybe.withDefault "" |> text ]
         ]
 
 
