@@ -1,6 +1,9 @@
 {
   "name": "bipuuk",
   "description": "",
+  "scripts": {
+    "deploy": "node scripts\\deploy.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kepeken/bipuuk.git"
