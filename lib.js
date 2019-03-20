@@ -236,62 +236,59 @@ class Node {
   }
 
   printc() {
-    const sr = 40;
-    const dr = 20;
-    const WIDTH = (sr + dr * this.height()) * 2;
+    if (this.isNull) {
+      return "";
+    }
+    function radius(depth) {
+      return 40 + 20 * depth;
+    }
+    const WIDTH = radius(this.height()) * 2;
     const HEIGHT = WIDTH;
     const { sin, cos, PI } = Math;
     const TAU = PI * 2;
-    function polar(radius, turn) {
-      let x = radius * cos(turn);
-      let y = radius * sin(turn);
+    function polar(depth, turn) {
+      let x = radius(depth) * cos(TAU * turn);
+      let y = radius(depth) * sin(TAU * turn);
       return `${x} ${y}`;
     }
     function normalize(turn) {
-      return (turn % TAU + TAU) % TAU;
+      return (turn % 1 + 1) % 1;
     }
     let d = "";
+    function line(d0, d1, turn) {
+      d += `M ${polar(d0, turn)}\n`;
+      d += `L ${polar(d1, turn)}\n`;
+    }
+    function arc(depth, t0, t1, large, clockwise) {
+      d += `M ${polar(depth, t0)}`;
+      d += `A ${radius(depth)} ${radius(depth)} ${TAU * t0} ${large} ${clockwise} ${polar(depth, t1)}`;
+    }
     let curr = [
-      { node: this, r: sr, theta: TAU / 4 }
+      { node: this, depth: 0, turn: 1 / 4 }
     ];
     while (curr.length) {
       let next = [];
-      curr = curr.filter(({ node }) => !node.isNull && (!node.left.isNull || !node.right.isNull));
-      curr.forEach(({ node, r: r0, theta: theta0 }, idx) => {
-        let r1 = r0 + dr;
-        d += `M ${polar(r0, theta0)}\n`;
-        d += `L ${polar(r1, theta0)}\n`;
+      curr.forEach(({ node, depth: d0, turn: t0 }, idx) => {
+        if (node.isNull || node.left.isNull && node.right.isNull) return;
+        const d1 = d0 + 1;
+        line(d0, d1, t0);
         if (!node.left.isNull) {
-          let neighbor = curr[(idx - 1 + curr.length) % curr.length];
-          let delta = normalize(neighbor.theta - theta0);
-          if (delta < 1e-15) delta = TAU;
-          delta = neighbor.node.right.isNull
-            ? delta / 2
-            : delta / 4;
-          let theta1 = normalize(theta0 + delta);
-          d += `M ${polar(r1, theta0)}\n`;
-          d += `A ${r1} ${r1} ${theta0} 0 1 ${polar(r1, theta1)}\n`;
-          next.push({
-            node: node.left,
-            r: r1,
-            theta: theta1
-          });
+          const neighbor = curr[(idx || curr.length) - 1];
+          let delta = normalize(neighbor.turn - t0);
+          if (delta === 0) delta = 1;
+          delta /= neighbor.node.right.isNull ? 2 : 4;
+          const t1 = normalize(t0 + delta);
+          arc(d1, t0, t1, 0, 1);
+          next.push({ node: node.left, depth: d1, turn: t1 });
         }
         if (!node.right.isNull) {
-          let neighbor = curr[(idx + 1) % curr.length];
-          let delta = normalize(theta0 - neighbor.theta);
-          if (delta < 1e-15) delta = TAU;
-          delta = neighbor.node.left.isNull
-            ? delta / 2
-            : delta / 4;
-          let theta1 = normalize(theta0 - delta);
-          d += `M ${polar(r1, theta0)}\n`;
-          d += `A ${r1} ${r1} ${theta0} 0 0 ${polar(r1, theta1)}\n`;
-          next.push({
-            node: node.right,
-            r: r1,
-            theta: theta1
-          });
+          const neighbor = curr[(idx + 1) % curr.length];
+          let delta = normalize(t0 - neighbor.turn);
+          if (delta === 0) delta = 1;
+          delta /= neighbor.node.left.isNull ? 2 : 4;
+          const t1 = normalize(t0 - delta);
+          arc(d1, t0, t1, 0, 0);
+          next.push({ node: node.right, depth: d1, turn: t1 });
         }
       });
       curr = next;
@@ -301,7 +298,7 @@ class Node {
       height="${HEIGHT}"
       viewBox="${-WIDTH / 2}, ${-HEIGHT / 2}, ${WIDTH}, ${HEIGHT}"
     >
-      <circle cx="0" cy="0" r="${sr}" stroke="black" fill="none"/>
+      <circle cx="0" cy="0" r="${radius(0)}" stroke="black" fill="none"/>
       <path d="${d}" stroke-linecap="round" stroke="black" fill="none"/>
     </svg>`;
   }
