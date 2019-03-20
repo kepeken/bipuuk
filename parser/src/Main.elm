@@ -63,9 +63,18 @@ view : Model -> Html Msg
 view model =
     div []
         [ textarea [ value model.text, onInput InputText ] []
-        , pre [] [ Bipuuk.toDigits model.tree |> text ]
+        , pre []
+            [ text <|
+                case Bipuuk.toDigits model.tree of
+                    Ok d ->
+                        d
+
+                    Err m ->
+                        m
+            ]
         , pre [] [ Bipuuk.toDyckWord model.tree |> text ]
         , pre [] [ model.error |> Maybe.withDefault "" |> text ]
+        , pre [] [ text <| String.fromInt <| Bipuuk.height model.tree ]
         , Bipuuk.CircleRenderer.renderCircle model.tree
         ]
 

@@ -142,9 +142,17 @@ digitsParser =
 
 bigintParser : Parser BigInt
 bigintParser =
-    Parser.map
-        (BigInt.fromString >> Maybe.withDefault zero)
-        digitsParser
+    digitsParser
+        |> Parser.andThen
+            (\digits ->
+                if String.length digits <= 70 then
+                    Parser.succeed digits
+
+                else
+                    Parser.problem "to many digits"
+            )
+        |> Parser.map
+            (BigInt.fromString >> Maybe.withDefault zero)
 
 
 treeParser : Parser Tree
@@ -187,6 +195,10 @@ toDyckWord t =
             "(" ++ toDyckWord x ++ ")" ++ toDyckWord y
 
 
-toDigits : Tree -> String
-toDigits =
-    toBigInt >> BigInt.toString
+toDigits : Tree -> Result String String
+toDigits tree =
+    if height tree <= 14 then
+        toBigInt tree |> BigInt.toString |> Ok
+
+    else
+        Err "too large"
