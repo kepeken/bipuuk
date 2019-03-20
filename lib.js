@@ -1,29 +1,32 @@
+// round down below the decimal point
 Big.DP = 0;
 Big.RM = 0;
 
+const LT = -1, EQ = 0, GT = 1;
+
 const mapping = {
   ii2i(x, y) {
-    // x <=> y
     switch (x.cmp(y)) {
-      // case lt: (y+1)**2-x
-      case -1: return y.plus(1).pow(2).minus(x);
-      // case eq: x**2+y+1
-      case 0: return x.pow(2).plus(y).plus(1);
-      // case gt: x**2+y+1
-      case 1: return x.pow(2).plus(y).plus(1);
+      // case x < y: (y + 1) ** 2 - x
+      case LT: return y.plus(1).pow(2).minus(x);
+      // case x = y: x ** 2 + y + 1
+      case EQ: return x.pow(2).plus(y).plus(1);
+      // case x > y: x ** 2 + y + 1
+      case GT: return x.pow(2).plus(y).plus(1);
     }
   },
   i2ii(z) {
-    // sqrt(z-1)
+    // m := sqrt(z - 1)
     const m = z.minus(1).sqrt();
-    // z <=> m(m+1)+1
-    switch (z.cmp(m.times(m.plus(1)).plus(1))) {
-      // case lt: (m, z-m**2-1)
-      case -1: return [m, z.minus(m.pow(2)).minus(1)];
-      // case eq: (m, m)
-      case 0: return [m, m];
-      // case gt: ((m+1)**2-z, m)
-      case 1: return [m.plus(1).pow(2).minus(z), m];
+    // h := (m + 1) * m + 1
+    const h = m.plus(1).times(m).plus(1);
+    switch (z.cmp(h)) {
+      // case z < h: ( m, m - (h - z) )
+      case LT: return [m, m.minus(h.minus(z))];
+      // case z = h: ( m, m )
+      case EQ: return [m, m];
+      // case z > h: ( m - (z - h), m )
+      case GT: return [m.minus(z.minus(h)), m];
     }
   },
 };
@@ -60,18 +63,27 @@ class Node {
 
   static fromString(src) {
     if (typeof src !== "string") throw new TypeError("invalid arguments");
-    src = src.replace(/[^()\d]/g, "");
     let pos = 0;
-    function read() {
+    function unexpected() {
+      throw new SyntaxError(`unexpected ${src[pos] ? `token ${src[pos]}` : `end of input`}`);
+    }
+    function spaces() {
+      while (src[pos] === "\t" || src[pos] === "\n" || src[pos] === "\r" || src[pos] === " ") {
+        pos += 1;
+      }
+    }
+    function tree() {
+      spaces();
       if (src[pos] === "(") {
         pos += 1;
-        const left = read();
+        const left = tree();
+        spaces();
         if (src[pos] === ")") {
           pos += 1;
-          const right = read();
+          const right = tree();
           return new Node(left, right);
         } else {
-          throw new SyntaxError("unexpected end of input");
+          unexpected();
         }
       } else if ("0" <= src[pos] && src[pos] <= "9") {
         let num = "";
@@ -84,12 +96,16 @@ class Node {
         return new Node();
       }
     }
-    const val = read();
-    if (pos !== src.length) {
-      throw SyntaxError("unexpected token " + src[pos]);
-    } else {
-      return val;
+    function text() {
+      const val = tree();
+      spaces();
+      if (pos === src.length) {
+        return val;
+      } else {
+        unexpected();
+      }
     }
+    return text();
   }
 
   print() {
@@ -217,8 +233,8 @@ class Node {
   }
 
   printc() {
-    const sr = 90;
-    const dr = 4;
+    const sr = 40;
+    const dr = 20;
     const WIDTH = (sr + dr * this.height()) * 2;
     const HEIGHT = WIDTH;
     const { sin, cos, PI } = Math;
