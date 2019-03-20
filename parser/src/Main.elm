@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Bipuuk
+import Bipuuk.CircleRenderer
 import Browser
 import Html exposing (Html, div, h1, img, pre, text, textarea)
 import Html.Attributes exposing (src, value)
@@ -63,7 +64,9 @@ view model =
     div []
         [ textarea [ value model.text, onInput InputText ] []
         , pre [] [ Bipuuk.toDigits model.tree |> text ]
+        , pre [] [ Bipuuk.toDyckWord model.tree |> text ]
         , pre [] [ model.error |> Maybe.withDefault "" |> text ]
+        , Bipuuk.CircleRenderer.renderCircle model.tree
         ]
 
 

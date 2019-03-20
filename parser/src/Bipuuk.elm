@@ -1,4 +1,4 @@
-module Bipuuk exposing (Tree, empty, fromString, toDigits, toDyckWord)
+module Bipuuk exposing (Tree(..), empty, fromString, height, toDigits, toDyckWord)
 
 import BigInt exposing (BigInt, add, div, mul, sub)
 import Parser exposing ((|.), (|=), Parser)
@@ -12,6 +12,16 @@ type Tree
 empty : Tree
 empty =
     Leaf
+
+
+height : Tree -> Int
+height tree =
+    case tree of
+        Leaf ->
+            0
+
+        Node x y ->
+            max (height x) (height y) + 1
 
 
 zero =
@@ -142,8 +152,10 @@ treeParser =
     Parser.oneOf
         [ Parser.succeed Node
             |. Parser.symbol "("
+            |. Parser.spaces
             |= Parser.lazy (\_ -> treeParser)
             |. Parser.symbol ")"
+            |. Parser.spaces
             |= Parser.lazy (\_ -> treeParser)
         , Parser.map fromBigInt bigintParser
         , Parser.succeed Leaf
