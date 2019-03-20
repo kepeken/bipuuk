@@ -1,0 +1,29 @@
+body {
+  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  background-color: #fcfcfa;
+}
+
+textarea,
+pre {
+  font-family: 'Consolas', 'Menlo', 'Courier New', Courier, monospace;
+}
+
+textarea {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 6rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+svg {
+  max-width: 100vw;
+  max-height: 100vw;
+}
+
+.border {
+  display: inline-block;
+  border: 1px solid #aaa;
+  padding: 10px;
+}

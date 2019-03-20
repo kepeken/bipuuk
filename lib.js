@@ -65,7 +65,10 @@ class Node {
     if (typeof src !== "string") throw new TypeError("invalid arguments");
     let pos = 0;
     function unexpected() {
-      throw new SyntaxError(`unexpected ${src[pos] ? `token ${src[pos]}` : `end of input`}`);
+      const done = src.slice(0, pos);
+      const lines = done.split(/\r|\n|\r\n/);
+      const position = `line ${lines.length}, column ${lines[lines.length - 1].length + 1}`;
+      throw new SyntaxError(`unexpected ${src[pos] ? `token ${src[pos]}` : `end of input`} at ${position}`);
     }
     function spaces() {
       while (src[pos] === "\t" || src[pos] === "\n" || src[pos] === "\r" || src[pos] === " ") {
