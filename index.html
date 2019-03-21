@@ -13,38 +13,49 @@
   <h1>bipuuk parser</h1>
   <p><a href="https://kepeken.gitbook.io/bipuuk/">Docs</a> | <a href="https://github.com/kepeken/bipuuk">Repo</a></p>
   <div>
-    <textarea type="text" id="$input" placeholder="input"></textarea>
+    <textarea type="text" id="$input"></textarea>
     <br>
     <pre id="$error"></pre>
+    <div><small>natural number notation</small></div>
     <pre id="$number"></pre>
+    <div><small>dyck word notation</small></div>
     <pre id="$dyck"></pre>
     <br>
-    <pre id="$circle" class="border"></pre>
+    <div><small>circle notation</small></div>
+    <div id="$circle"></div>
     <br>
-    <pre id="$tree" class="border"></pre>
+    <div><small>ascii art notation</small></div>
+    <pre id="$tree"></pre>
     <br>
-    <div id="$htree" class="border"></div>
+    <div><small>h tree notation</small></div>
+    <div id="$htree"></div>
     <br>
-    <pre id="$zigzag" class="border"></pre>
+    <div><small>zigzag notation</small></div>
+    <pre id="$zigzag"></pre>
+    <br>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/5.2.1/big.min.js"></script>
   <script src="lib.js"></script>
   <script>
-    $input.placeholder = '<text> ::= "" | "(" <text> ")" <text> | [0-9]+';
-    $input.oninput = function () {
+    function render(text) {
       try {
-        const node = Node.fromString(this.value);
+        const node = Node.fromString(text);
         $error.textContent = "";
-        $dyck.textContent = node.toString();
-        $number.textContent = node.toInt().toFixed();
-        $tree.textContent = node.print();
-        $htree.innerHTML = node.printh();
-        $zigzag.textContent = node.printz();
-        $circle.innerHTML = node.printc();
+        $dyck.textContent = node.toDyckWord();
+        $number.textContent = node.toDigits();
+        $tree.textContent = node.renderAATree();
+        $htree.innerHTML = node.renderHTree();
+        $zigzag.textContent = node.renderZigZag();
+        $circle.innerHTML = node.renderCircle();
       } catch (e) {
         $error.textContent = e;
       }
-    };
+    }
+    $input.oninput = function () {
+      render(this.value);
+    }
+    render("");
+    $input.placeholder = '<text> ::= "" | "(" <text> ")" <text> | [0-9]+';
   </script>
 </body>
 

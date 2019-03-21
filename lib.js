@@ -44,9 +44,13 @@ class Node {
     return Math.max(this.left.height(), this.right.height()) + 1;
   }
 
-  toInt() {
+  toBigInt() {
     if (this.isNull) return Big(0);
-    return mapping.ii2i(this.left.toInt(), this.right.toInt());
+    return mapping.ii2i(this.left.toBigInt(), this.right.toBigInt());
+  }
+
+  toDigits() {
+    return this.toBigInt().toFixed();
   }
 
   static fromInt(i) {
@@ -56,9 +60,9 @@ class Node {
     return new Node(Node.fromInt(l), Node.fromInt(r));
   }
 
-  toString() {
+  toDyckWord() {
     if (this.isNull) return "";
-    return "(" + this.left.toString() + ")" + this.right.toString();
+    return "(" + this.left.toDyckWord() + ")" + this.right.toDyckWord();
   }
 
   static fromString(src) {
@@ -111,11 +115,11 @@ class Node {
     return text();
   }
 
-  print() {
+  renderAATree() {
     function getLines(n) {
-      const thisInt = n.toInt().toFixed();
+      const thisInt = n.toDigits();
       if (n.isNull) {
-        return null;
+        return ["0"];
       } else if (n.left.isNull && n.right.isNull) {
         return ["1"];
       } else if (n.left.isNull) {
@@ -195,11 +199,11 @@ class Node {
         return thisLines;
       }
     }
-    const lines = getLines(this) || ["0"];
+    const lines = getLines(this);
     return lines.join("\n") + "\n";
   }
 
-  printh() {
+  renderHTree() {
     function silver(x) {
       return Math.round((x * Math.SQRT1_2) * 1e6) / 1e6;
     }
@@ -219,7 +223,7 @@ class Node {
     return `<svg width="${width}" height="${height}"><path d="M${width / 2} ${height}${path}" stroke="black"/></svg>`;
   }
 
-  printz() {
+  renderZigZag() {
     const lines = [];
     let space = 0;
     function put(n, idx) {
@@ -235,7 +239,7 @@ class Node {
     return lines.reverse().join("\n") + "\n";
   }
 
-  printc() {
+  renderCircle() {
     if (this.isNull) {
       return "";
     }
