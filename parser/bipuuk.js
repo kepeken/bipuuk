@@ -53,11 +53,11 @@ class Node {
     return this.toBigInt().toFixed();
   }
 
-  static fromDigits(i) {
-    i = Big(i).round().abs();
-    if (i.eq(0)) return new Node();
-    const [l, r] = mapping.unpair(i);
-    return new Node(Node.fromDigits(l), Node.fromDigits(r));
+  static fromDigits(digits) {
+    const int = Big(digits).round().abs();
+    if (int.eq(0)) return new Node();
+    const [left, right] = mapping.unpair(int);
+    return new Node(Node.fromDigits(left), Node.fromDigits(right));
   }
 
   toDyckWord() {
@@ -125,39 +125,25 @@ class Node {
       } else if (n.left.isNull) {
         const rightLines = getLines(n.right);
         const pad = " ".repeat(rightLines[0].match(/\d+_* *$/)[0].length);
-        let line0 = thisInt + " " + pad;
-        let line1 = "\\" + pad;
-        if (line0.length > rightLines[0].length) {
-          return [
-            line0,
-            line1.padStart(line0.length),
-            ...rightLines.map(line => line.padStart(line0.length))
-          ];
-        } else {
-          return [
-            line0.padStart(rightLines[0].length),
-            line1.padStart(rightLines[0].length),
-            ...rightLines
-          ];
-        }
+        const line0 = thisInt + " " + pad;
+        const line1 = "\\" + pad;
+        const width = Math.max(line0.length, rightLines[0].length);
+        return [
+          line0,
+          line1,
+          ...rightLines
+        ].map(line => line.padStart(width));
       } else if (n.right.isNull) {
         const leftLines = getLines(n.left);
         const pad = " ".repeat(leftLines[0].match(/^ *_*\d+/)[0].length);
-        let line0 = pad + " " + thisInt;
-        let line1 = pad + "/";
-        if (line0.length > leftLines[0].length) {
-          return [
-            line0,
-            line1.padEnd(line0.length),
-            ...leftLines.map(line => line.padEnd(line0.length))
-          ];
-        } else {
-          return [
-            line0.padEnd(leftLines[0].length),
-            line1.padEnd(leftLines[0].length),
-            ...leftLines
-          ];
-        }
+        const line0 = pad + " " + thisInt;
+        const line1 = pad + "/";
+        const width = Math.max(line0.length, leftLines[0].length);
+        return [
+          line0,
+          line1,
+          ...leftLines
+        ].map(line => line.padEnd(width));
       } else {
         let leftLines = getLines(n.left), rightLines = getLines(n.right);
         let margin = -Infinity;
@@ -185,8 +171,8 @@ class Node {
         }
         line0 = " " + line0 + " ";
         line1 = "/" + " ".repeat(expands) + "\\";
-        let ls = " ".repeat(leftLines[0].match(/^ *_*\d+/)[0].length);
-        let rs = " ".repeat(rightLines[0].match(/\d+_* *$/)[0].length);
+        const ls = " ".repeat(leftLines[0].match(/^ *_*\d+/)[0].length);
+        const rs = " ".repeat(rightLines[0].match(/\d+_* *$/)[0].length);
         line0 = ls + line0 + rs;
         line1 = ls + line1 + rs;
         const thisLines = [line0, line1];
