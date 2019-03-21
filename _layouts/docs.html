@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | bipuuk</title>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/docs.css">
+</head>
+
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+    </header>
+    <nav class="docs-sidebar">
+      {% capture sidebar %}{% include sidebar.md %}{% endcapture %}
+      {{ sidebar | markdownify }}
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h2>{{ page.title }}</h2>
+
+        {{ content }}
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
+</html>
