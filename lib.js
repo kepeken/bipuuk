@@ -5,7 +5,7 @@ Big.RM = 0;
 const LT = -1, EQ = 0, GT = 1;
 
 const mapping = {
-  ii2i(x, y) {
+  pair(x, y) {
     switch (x.cmp(y)) {
       // case x < y: (y + 1) ** 2 - x
       case LT: return y.plus(1).pow(2).minus(x);
@@ -15,7 +15,7 @@ const mapping = {
       case GT: return x.pow(2).plus(y).plus(1);
     }
   },
-  i2ii(z) {
+  unpair(z) {
     // m := sqrt(z - 1)
     const m = z.minus(1).sqrt();
     // h := (m + 1) * m + 1
@@ -46,18 +46,18 @@ class Node {
 
   toBigInt() {
     if (this.isNull) return Big(0);
-    return mapping.ii2i(this.left.toBigInt(), this.right.toBigInt());
+    return mapping.pair(this.left.toBigInt(), this.right.toBigInt());
   }
 
   toDigits() {
     return this.toBigInt().toFixed();
   }
 
-  static fromInt(i) {
+  static fromDigits(i) {
     i = Big(i).round().abs();
     if (i.eq(0)) return new Node();
-    const [l, r] = mapping.i2ii(i);
-    return new Node(Node.fromInt(l), Node.fromInt(r));
+    const [l, r] = mapping.unpair(i);
+    return new Node(Node.fromDigits(l), Node.fromDigits(r));
   }
 
   toDyckWord() {
@@ -98,7 +98,7 @@ class Node {
           num += src[pos];
           pos += 1;
         }
-        return Node.fromInt(num);
+        return Node.fromDigits(num);
       } else {
         return new Node();
       }
