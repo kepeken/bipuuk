@@ -1,5 +1,6 @@
 ---
 layout: docs
+permalink: /docs/
 title: 概要
 ---
 
