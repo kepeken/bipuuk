@@ -1,3 +1,5 @@
+"use strict";
+
 // round down below the decimal point
 Big.DP = 0;
 Big.RM = 0;
