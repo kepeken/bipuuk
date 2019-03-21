@@ -90,9 +90,16 @@
   .docs-content {
     padding-left: 256px;
   }
+  .docs-content img {
+    max-width: 512px;
+  }
 }
 
 .docs-content img {
   display: block;
+  margin: 0 auto;
+}
+
+.docs-content twitter-widget {
   margin: 0 auto;
 }
