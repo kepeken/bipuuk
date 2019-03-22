@@ -81,6 +81,8 @@ Haskell などの代数的データ構造の表し方に似ています。
 
 [二分木 - Wikipedia](https://ja.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%9C%A8#N%E9%80%B2%E6%9C%A8%E3%81%AE%E4%BA%8C%E5%88%86%E6%9C%A8%E8%A1%A8%E7%8F%BE)
 
+多分木とは子を複数持つ木のことであり、["maybe a tree" という意味ではありません](https://translate.google.co.jp/?hl=ja#view=home&op=translate&sl=ja&tl=en&text=%E5%A4%9A%E5%88%86%E6%9C%A8)。
+
 LISP のリスト構造のようにすると二分木と多分木は一対一に変換できるので、多分木を元に表記を考えることもできます。
 
 [Yuki さんの提案](https://twitter.com/Yuki_jukjis/status/1108341081677037570)：多分木から自然数数列への単射

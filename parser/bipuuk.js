@@ -237,6 +237,7 @@ class Node {
     const WIDTH = radius(this.height()) * 2;
     const HEIGHT = WIDTH;
     const { sin, cos, PI } = Math;
+    // Pi is wrong!
     const TAU = PI * 2;
     function polar(depth, turn) {
       let x = radius(depth) * cos(TAU * turn);
