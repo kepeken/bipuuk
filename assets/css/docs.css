@@ -67,6 +67,10 @@
   padding-left: 15px;
 }
 
+.docs-content {
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 1023px) {
   .docs-header,
   .docs-sidebar,
@@ -81,6 +85,9 @@
   .docs-sidebar {
     right: 100%;
   }
+  .docs-content {
+    max-width: 756px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -89,6 +96,7 @@
   }
   .docs-content {
     padding-left: 256px;
+    width: 1024px;
   }
   .docs-content img {
     max-width: 512px;
