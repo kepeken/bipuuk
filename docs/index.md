@@ -10,7 +10,7 @@ title: 概要
 
 ## モユネ分類
 
-[モユネ分類 | 人工言語学 Wiki](http://ja.conlinguistics.wikia.com/wiki/%E3%83%A2%E3%83%A6%E3%83%8D%E5%88%86%E9%A1%9E)
+[モユネ分類 \| 人工言語学 Wiki](http://ja.conlinguistics.wikia.com/wiki/%E3%83%A2%E3%83%A6%E3%83%8D%E5%88%86%E9%A1%9E)
 
 |タグ|説明|
 |---|---|
