@@ -19,7 +19,7 @@ title: 木のナンバリング
 [https://twitter.com/kepeken/status/1029774623787765760](https://twitter.com/kepeken/status/1029774623787765760)
 
 ```
-f(x, y) = 2 ** m * (2 * n + 1)
+f(x, y) = 2 ** x * (2 * y + 1)
 ```
 
 インフレが激しいため不採用です。
