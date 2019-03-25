@@ -3,3 +3,4 @@
 * [様々な表記]({{ site.baseurl }}/docs/xeuki/)
 * [木のナンバリング]({{ site.baseurl }}/docs/bangau/)
 * [形態論]({{ site.baseurl }}/docs/kegtairon/)
+* [基本的な文]({{ site.baseurl }}/docs/kixon/)
