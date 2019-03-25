@@ -72,7 +72,7 @@ class Node {
     let pos = 0;
     function unexpected() {
       const done = src.slice(0, pos);
-      const lines = done.split(/\r|\n|\r\n/);
+      const lines = done.split(/\r\n?|\n/);
       const position = `line ${lines.length}, column ${lines[lines.length - 1].length + 1}`;
       throw new SyntaxError(`unexpected ${src[pos] ? `token ${src[pos]}` : `end of input`} at ${position}`);
     }
@@ -86,7 +86,6 @@ class Node {
       if (src[pos] === "(") {
         pos += 1;
         const left = tree();
-        spaces();
         if (src[pos] === ")") {
           pos += 1;
           const right = tree();
@@ -100,21 +99,18 @@ class Node {
           num += src[pos];
           pos += 1;
         }
+        spaces();
         return Node.fromDigits(num);
       } else {
         return new Node();
       }
     }
-    function text() {
-      const val = tree();
-      spaces();
-      if (pos === src.length) {
-        return val;
-      } else {
-        unexpected();
-      }
+    const result = tree();
+    if (pos === src.length) {
+      return result;
+    } else {
+      unexpected();
     }
-    return text();
   }
 
   renderAATree() {
