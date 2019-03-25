@@ -2,3 +2,4 @@
 * [データ構造について]({{ site.baseurl }}/docs/kouzau/)
 * [様々な表記]({{ site.baseurl }}/docs/xeuki/)
 * [木のナンバリング]({{ site.baseurl }}/docs/bangau/)
+* [形態論]({{ site.baseurl }}/docs/kegtairon/)
