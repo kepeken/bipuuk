@@ -257,8 +257,8 @@ class Node {
     ];
     while (curr.length) {
       let next = [];
+      curr = curr.filter(({ node }) => !node.left.isNull || !node.right.isNull);
       curr.forEach(({ node, depth: d0, turn: t0 }, idx) => {
-        if (node.isNull || node.left.isNull && node.right.isNull) return;
         const d1 = d0 + 1;
         line(d0, d1, t0);
         if (!node.left.isNull) {
