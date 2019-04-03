@@ -1,2 +1,7 @@
+# Plugins
+plugins:
+  - jekyll-redirect-from
+
+# Serving
 host: 0.0.0.0
 baseurl: /bipuuk
