@@ -3,6 +3,10 @@ body {
   background-color: #fcfcfa;
 }
 
+h1 {
+  display: inline-block;
+}
+
 textarea,
 pre {
   font-family: 'Consolas', 'Menlo', 'Courier New', Courier, monospace;
