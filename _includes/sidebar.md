@@ -5,3 +5,6 @@
 * [形態論]({{ site.baseurl }}/docs/kegtairon/)
 * <span>文法</span>
   * [基本的な文]({{ site.baseurl }}/docs/bunpafu/kixon/)
+  * [与格を使った文]({{ site.baseurl }}/docs/bunpafu/jokaku/)
+  * [制詞]({{ site.baseurl }}/docs/bunpafu/seisi/)
+  * [心態詞]({{ site.baseurl }}/docs/bunpafu/simtaisi/)
