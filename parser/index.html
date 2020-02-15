@@ -1,1 +1,63 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><title>Elm App</title><link href="/static/css/main.cc1cb0d7.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script src="/static/js/runtime~main.d53d57e4.js"></script><script src="/static/js/vendors~main.3ca81432.chunk.js"></script><script src="/static/js/main.1d055ccc.chunk.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>bipuuk parser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/bipuuk/parser/style.css">
+</head>
+
+<body>
+  <h1>bipuuk parser</h1>
+  <small>v0.2.1-alpha.2</small>
+  <p><a href="/bipuuk/docs/">Docs</a> | <a href="https://github.com/kepeken/bipuuk">Repo</a></p>
+  <div>
+    <textarea type="text" id="$input"></textarea>
+    <br>
+    <pre id="$error"></pre>
+    <div><small>natural number notation</small></div>
+    <pre id="$number"></pre>
+    <div><small>dyck word notation</small></div>
+    <pre id="$dyck"></pre>
+    <br>
+    <div><small>circle notation</small></div>
+    <div id="$circle"></div>
+    <br>
+    <div><small>ascii art notation</small></div>
+    <pre id="$tree"></pre>
+    <br>
+    <div><small>h tree notation</small></div>
+    <div id="$htree"></div>
+    <br>
+    <div><small>zigzag notation</small></div>
+    <pre id="$zigzag"></pre>
+    <br>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/5.2.1/big.min.js"></script>
+  <script src="/bipuuk/parser/bipuuk.js"></script>
+  <script>
+    function render(text) {
+      try {
+        const node = Node.fromString(text);
+        $error.textContent = "";
+        $dyck.textContent = node.toDyckWord();
+        $number.textContent = node.toDigits();
+        $tree.textContent = node.renderAATree();
+        $htree.innerHTML = node.renderHTree();
+        $zigzag.textContent = node.renderZigZag();
+        $circle.innerHTML = node.renderCircle();
+      } catch (e) {
+        $error.textContent = e;
+      }
+    }
+    $input.oninput = function () {
+      render(this.value);
+    }
+    render("");
+    $input.placeholder = '<text> ::= "" | "(" <text> ")" <text> | [0-9]+';
+  </script>
+</body>
+
+</html>
