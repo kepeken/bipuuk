@@ -4,4 +4,4 @@ plugins:
 
 # Serving
 host: 0.0.0.0
-baseurl: /bipuuk
+baseurl: /bipuuk/v0.2
