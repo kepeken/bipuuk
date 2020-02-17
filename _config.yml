@@ -1,3 +1,5 @@
+destination: ./.gh-pages/v0.2
+
 # Plugins
 plugins:
   - jekyll-redirect-from
