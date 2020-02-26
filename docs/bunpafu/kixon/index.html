@@ -16,12 +16,12 @@
     <header class="docs-header">
       <label for="toggle" class="docs-header-toggle">≡</label>
       <h1>bipuuk</h1>
-      <small>v0.2.1-alpha.2</small>
+      <small>v0.3.0</small>
     </header>
     <nav class="docs-sidebar">
       
       <ul>
-  <li><a href="/bipuuk/docs/">概要</a></li>
+  <li><a href="/bipuuk/">概要</a></li>
   <li><a href="/bipuuk/docs/kouzau/">データ構造について</a></li>
   <li><a href="/bipuuk/docs/xeuki/">様々な表記</a></li>
   <li><a href="/bipuuk/docs/bangau/">木のナンバリング</a></li>
@@ -34,6 +34,14 @@
       <li><a href="/bipuuk/docs/bunpafu/simtaisi/">心態詞</a></li>
     </ul>
   </li>
+  <li><a href="/bipuuk/parser/">パーサ</a></li>
+</ul>
+
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
 </ul>
 
     </nav>
@@ -65,7 +73,7 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( [426 あたたかい] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ [426 あたたかい] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>あたたかい。</p>
@@ -100,8 +108,8 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( ( [150 あなた] ) [5 題]
-) ( [174 美しい] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [150 あなた] \ [5 題]
+\ / [174 美しい] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>あなたは美しい。</p>
@@ -140,9 +148,9 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( ( [559 私] ) [5 題]
-) ( ( [265 リンゴ] ) [15 対]
-  ) ( [600 食べる] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [559 私] \ [5 題]
+\ / / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>私はリンゴを食べる。</p>
@@ -179,9 +187,9 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( ( [235 ウサギ] ) [5 題]
-) ( ( [332 耳] ) [23 主]
-  ) ( [40 大きい] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [235 ウサギ] \ [5 題]
+\ / / [332 耳] \ [23 主]
+  \ / [40 大きい] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>ウサギは耳が大きい。</p>
@@ -206,10 +214,10 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( ( [150 あなた] ) [5 題]
-) ( ( ( [559 私] ) [18 属]
-    ) ( [265 リンゴ] ) [15 対]
-  ) ( [600 食べる] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [150 あなた] \ [5 題]
+\ / / / [559 私] \ [18 属]
+    \ / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>あなたは私のリンゴを食べる。</p>
@@ -232,10 +240,10 @@
   </tbody>
 </table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>( ( [559 私] ) [5 題]
-) ( ( ( [471 赤] ) [18 属]
-    ) ( [265 リンゴ] ) [15 対]
-  ) ( [600 食べる] ) [14 述]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [559 私] \ [5 題]
+\ / / / [471 赤] \ [18 属]
+    \ / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
 </code></pre></div></div>
 <blockquote>
   <p>私は赤いリンゴを食べる。</p>

@@ -64,7 +64,7 @@ class Node {
 
   toDyckWord() {
     if (this.isNull) return "";
-    return "(" + this.left.toDyckWord() + ")" + this.right.toDyckWord();
+    return "/" + this.left.toDyckWord() + "\\" + this.right.toDyckWord();
   }
 
   static fromString(src) {
@@ -83,10 +83,10 @@ class Node {
     }
     function tree() {
       spaces();
-      if (src[pos] === "(") {
+      if (src[pos] === "/") {
         pos += 1;
         const left = tree();
-        if (src[pos] === ")") {
+        if (src[pos] === "\\") {
           pos += 1;
           const right = tree();
           return new Node(left, right);

@@ -1,41 +1,119 @@
 <!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ja">
 
-<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>bipuuk</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="bipuuk" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:site_name" content="bipuuk" />
-<script type="application/ld+json">
-{"@type":"WebSite","url":"/bipuuk/","name":"bipuuk","headline":"bipuuk","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bipuuk | bipuuk</title>
+  <link rel="stylesheet" href="/bipuuk/assets/css/style.css">
+  <link rel="stylesheet" href="/bipuuk/assets/css/docs.css">
+</head>
 
-    <link rel="stylesheet" href="/bipuuk/assets/css/style.css?v=72508ca330892c37d49fbb17cb682775edf5c23e">
-  </head>
-  <body>
-    <div class="container-lg px-3 my-5 markdown-body">
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+      <small>v0.3.0</small>
+    </header>
+    <nav class="docs-sidebar">
       
-
-      <h1 id="bipuuk">bipuuk</h1>
-
-<p><strong>bipuuk</strong> または <strong>众語</strong> は けぺけん が制作している人工言語です。</p>
-
-<ul>
-  <li><a href="https://kepeken.github.io/bipuuk/docs/">ドキュメント</a></li>
-  <li><a href="https://kepeken.github.io/bipuuk/parser/">パーサ</a></li>
-  <li><a href="https://github.com/kepeken/bipuuk">GitHub</a></li>
+      <ul>
+  <li><a href="/bipuuk/">概要</a></li>
+  <li><a href="/bipuuk/docs/kouzau/">データ構造について</a></li>
+  <li><a href="/bipuuk/docs/xeuki/">様々な表記</a></li>
+  <li><a href="/bipuuk/docs/bangau/">木のナンバリング</a></li>
+  <li><a href="/bipuuk/docs/kegtairon/">形態論</a></li>
+  <li><span>文法</span>
+    <ul>
+      <li><a href="/bipuuk/docs/bunpafu/kixon/">基本的な文</a></li>
+      <li><a href="/bipuuk/docs/bunpafu/jokaku/">与格を使った文</a></li>
+      <li><a href="/bipuuk/docs/bunpafu/seisi/">制詞</a></li>
+      <li><a href="/bipuuk/docs/bunpafu/simtaisi/">心態詞</a></li>
+    </ul>
+  </li>
+  <li><a href="/bipuuk/parser/">パーサ</a></li>
 </ul>
 
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
+</ul>
 
-      
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-    <script>anchors.add();</script>
-    
-  </body>
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h1>bipuuk</h1>
+
+        <p><strong>bipuuk</strong> または <strong>众語</strong> は けぺけん が制作している人工言語です。</p>
+
+<p><img src="/bipuuk/bipuuk.svg" alt="bipuuk" /></p>
+
+<h2 id="モユネ分類">モユネ分類</h2>
+
+<p><a href="http://ja.conlinguistics.wikia.com/wiki/%E3%83%A2%E3%83%A6%E3%83%8D%E5%88%86%E9%A1%9E">モユネ分類 | 人工言語学 Wiki</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>タグ</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ART</td>
+      <td>美的楽しみを志向する。</td>
+    </tr>
+    <tr>
+      <td>EXP</td>
+      <td>その言語の仕様がうまく機能するか確かめることを志向する。</td>
+    </tr>
+    <tr>
+      <td>LIT</td>
+      <td>主たる形態として書記を使用することを志向する。</td>
+    </tr>
+    <tr>
+      <td>JOK</td>
+      <td>何らかの事物についての風刺や冗談としてのものを志向する。</td>
+    </tr>
+    <tr>
+      <td>TOL</td>
+      <td>他言語の流入/流用に対して寛容/無頓着である。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="説明">説明</h2>
+
+<p>言ってしまえば奇をてらった言語です。普通の言語であれば音素列や韻律だったり文字列によって記述されるところを、bipuuk ではデータ構造によって記述します。</p>
+
+<p>とはいえ、手話に音声言語の知見が適用できたりするように、bipuuk にも他の（人工）言語の知見が適用できることはあると思います。</p>
+
+<p>例えば木構造を知っていることは前提になりますが、これは一般的な言語の文章構造が明確になったものと考えればむしろ解釈の手助けになります。</p>
+
+<h2 id="名前の由来">名前の由来</h2>
+
+<h3 id="bipuuk">bipuuk</h3>
+
+<p>主に二分木を用いることから、フィンランド語で「二分木語」を意味する “binääripuukieli” を省略したものです。英語の “bifurcation” のもじりでもあります。</p>
+
+<h3 id="众語">众語</h3>
+
+<p>和製の人工言語にはよく「◯語」（◯は漢字一文字）のような略称がつけられる風潮があり、それに倣ったものです。bipuuk には音がないので、見た目で選びました。</p>
+
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
 </html>
