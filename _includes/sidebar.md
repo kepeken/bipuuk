@@ -1,4 +1,4 @@
-* [概要]({{ site.baseurl }}/docs/)
+* [概要]({{ site.baseurl }}/)
 * [データ構造について]({{ site.baseurl }}/docs/kouzau/)
 * [様々な表記]({{ site.baseurl }}/docs/xeuki/)
 * [木のナンバリング]({{ site.baseurl }}/docs/bangau/)

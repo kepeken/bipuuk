@@ -1,7 +1,8 @@
 ---
 layout: docs
-permalink: /docs/
-title: 概要
+permalink: /
+redirect_from: /docs/
+title: bipuuk
 ---
 
 **bipuuk** または **众語** は けぺけん が制作している人工言語です。
