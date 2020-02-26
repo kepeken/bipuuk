@@ -8,13 +8,13 @@
   <title>bipuuk parser</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/bipuuk/parser/style.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/parser/style.css">
 </head>
 
 <body>
   <h1>bipuuk parser</h1>
   <small>{{ site.data.version }}</small>
-  <p><a href="/bipuuk/docs/">Docs</a> | <a href="https://github.com/kepeken/bipuuk">Repo</a></p>
+  <p><a href="{{ site.baseurl }}/docs/">Docs</a> | <a href="https://github.com/kepeken/bipuuk">Repo</a></p>
   <div>
     <textarea type="text" id="$input"></textarea>
     <br>
@@ -38,7 +38,7 @@
     <br>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/5.2.1/big.min.js"></script>
-  <script src="/bipuuk/parser/bipuuk.js"></script>
+  <script src="{{ site.baseurl }}/parser/bipuuk.js"></script>
   <script>
     function render(text) {
       try {
@@ -58,7 +58,7 @@
       render(this.value);
     }
     render("");
-    $input.placeholder = '<text> ::= "" | "(" <text> ")" <text> | [0-9]+';
+    $input.placeholder = '<text> ::= "" | "/" <text> "\\" <text> | [0-9]+';
   </script>
 </body>
 
