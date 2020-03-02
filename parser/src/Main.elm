@@ -8,6 +8,7 @@ import Element.Font
 import Element.Input
 import Element.Region
 import Html exposing (Html)
+import Html.Attributes
 
 
 main : Program () Model Msg
@@ -41,17 +42,13 @@ init _ =
 
 
 type Msg
-    = NoOp
-    | Input String
+    = ChangeText String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            ( model, Cmd.none )
-
-        Input input ->
+        ChangeText input ->
             ( { model | input = input }, Cmd.none )
 
 
@@ -76,6 +73,7 @@ view model =
         Element.column
             [ Element.width Element.fill
             , Element.padding 10
+            , Element.spacing 10
             ]
             [ Element.el
                 [ Element.Region.heading 1
@@ -85,18 +83,23 @@ view model =
                 ]
               <|
                 Element.text "Bipuuk Parser"
-            , Element.Input.multiline
-                []
-                { label = Element.Input.labelHidden "Input"
-                , onChange = Input
-                , placeholder = Just <| Element.Input.placeholder [] <| Element.text "Input"
-                , spellcheck = False
-                , text = model.input
-                }
+            , Element.el
+                [ Element.width Element.fill
+                , Element.htmlAttribute <| Html.Attributes.style "word-break" "break-all"
+                ]
+              <|
+                Element.Input.multiline
+                    []
+                    { onChange = ChangeText
+                    , text = model.input
+                    , placeholder = Just <| Element.Input.placeholder [] <| Element.text "Input"
+                    , label = Element.Input.labelHidden "Input"
+                    , spellcheck = False
+                    }
             , Element.text <|
                 case Bipuuk.parse model.input of
                     Ok tree ->
-                        Bipuuk.toDyckWord tree
+                        Bipuuk.inspect tree
 
                     Err error ->
                         error
