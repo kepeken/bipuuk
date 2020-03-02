@@ -9,6 +9,7 @@ import Element.Input
 import Element.Region
 import Html exposing (Html)
 import Html.Attributes
+import Http
 
 
 main : Program () Model Msg
@@ -27,13 +28,14 @@ main =
 
 type alias Model =
     { input : String
+    , dictionary : Bipuuk.Dictionary
     }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model ""
-    , Cmd.none
+    ( { input = "", dictionary = Bipuuk.emptyDictionary }
+    , Http.get { url = "dictionary.tsv", expect = Http.expectString GetDictionary }
     )
 
 
@@ -43,6 +45,7 @@ init _ =
 
 type Msg
     = ChangeText String
+    | GetDictionary (Result Http.Error String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -50,6 +53,14 @@ update msg model =
     case msg of
         ChangeText input ->
             ( { model | input = input }, Cmd.none )
+
+        GetDictionary responce ->
+            case responce of
+                Ok tsv ->
+                    ( { model | dictionary = Bipuuk.loadDictionary tsv }, Cmd.none )
+
+                Err _ ->
+                    ( model, Cmd.none )
 
 
 
@@ -96,11 +107,16 @@ view model =
                     , label = Element.Input.labelHidden "Input"
                     , spellcheck = False
                     }
-            , Element.text <|
-                case Bipuuk.parse model.input of
-                    Ok tree ->
-                        Bipuuk.inspect tree
+            , Element.column
+                [ Element.spacing 4
+                ]
+              <|
+                List.map Element.text <|
+                    String.lines <|
+                        case Bipuuk.parse model.input of
+                            Ok tree ->
+                                Bipuuk.inspect model.dictionary tree
 
-                    Err error ->
-                        error
+                            Err error ->
+                                error
             ]

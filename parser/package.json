@@ -4,8 +4,10 @@
     "clean": "rimraf build",
     "start:html": "cpx src/index.html build -w",
     "start:elm": "elm-live src/Main.elm --hot --open --dir=build -- --output=build/elm.js",
+    "start:dictionary": "cpx ../dictionary.tsv build -w",
     "build:html": "cpx src/index.html build",
     "build:elm": "elm make src/Main.elm --optimize --output=build/elm.optimized.js && google-closure-compiler --js=build/elm.optimized.js --js_output_file=build/elm.js && rimraf build/elm.optimized.js",
+    "build:dictionary": "cpx ../dictionary.tsv build",
     "start": "run-p start:*",
     "build": "run-s clean build:*"
   },
