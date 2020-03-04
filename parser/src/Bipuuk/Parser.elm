@@ -15,6 +15,7 @@ textParser =
     Parser.succeed identity
         |. Parser.spaces
         |= treeParser
+        |. Parser.spaces
         |. Parser.end
 
 
@@ -29,5 +30,21 @@ treeParser =
             |. Parser.symbol "\\"
             |. Parser.spaces
             |= Parser.lazy (\_ -> treeParser)
+        , rootParser
         , Parser.succeed Null
         ]
+
+
+charParser : Parser Tree
+charParser =
+    Parser.succeed ()
+        |. Parser.chompIf Char.isLower
+        |> Parser.mapChompedString
+            (\ch () -> Bipuuk.fromNumber <| Maybe.withDefault 0 <| List.head <| String.indices ch Bipuuk.table)
+
+
+rootParser : Parser Tree
+rootParser =
+    Parser.succeed Node
+        |= charParser
+        |= charParser

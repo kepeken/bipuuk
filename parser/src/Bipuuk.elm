@@ -1,4 +1,4 @@
-module Bipuuk exposing (Dictionary, Tree(..), emptyDictionary, height, inspect, loadDictionary, toDyckWord)
+module Bipuuk exposing (Dictionary, Tree(..), emptyDictionary, fromNumber, height, inspect, loadDictionary, table, toDyckWord)
 
 import Dict exposing (Dict)
 
@@ -46,6 +46,30 @@ toNumber tree =
                     max x y
             in
             m * m + m + y - x + 1
+
+
+fromNumber : Int -> Tree
+fromNumber z =
+    if z == 0 then
+        Null
+
+    else
+        let
+            m =
+                floor (sqrt (toFloat (z - 1)))
+
+            h =
+                (m + 1) * m + 1
+        in
+        case compare z h of
+            LT ->
+                Node (fromNumber m) (fromNumber (m - h + z))
+
+            EQ ->
+                Node (fromNumber m) (fromNumber m)
+
+            GT ->
+                Node (fromNumber (m - z + h)) (fromNumber m)
 
 
 table : String
