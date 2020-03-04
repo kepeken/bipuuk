@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Bipuuk
 import Bipuuk.Circle
+import Bipuuk.Parser
 import Browser
 import Element
 import Element.Background
@@ -61,7 +62,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeText input ->
-            case Bipuuk.parse input of
+            case Bipuuk.Parser.run input of
                 Ok tree ->
                     ( { model
                         | input = input

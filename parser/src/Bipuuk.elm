@@ -1,7 +1,6 @@
-module Bipuuk exposing (Dictionary, Tree(..), emptyDictionary, height, inspect, loadDictionary, parse, toDyckWord)
+module Bipuuk exposing (Dictionary, Tree(..), emptyDictionary, height, inspect, loadDictionary, toDyckWord)
 
 import Dict exposing (Dict)
-import Parser exposing ((|.), (|=), Parser)
 
 
 type Tree
@@ -27,35 +26,6 @@ toDyckWord tree =
 
         Node bii puu ->
             "/" ++ toDyckWord bii ++ "\\" ++ toDyckWord puu
-
-
-parse : String -> Result String Tree
-parse =
-    Result.mapError Parser.deadEndsToString
-        << Parser.run textParser
-
-
-textParser : Parser Tree
-textParser =
-    Parser.succeed identity
-        |. Parser.spaces
-        |= treeParser
-        |. Parser.end
-
-
-treeParser : Parser Tree
-treeParser =
-    Parser.oneOf
-        [ Parser.succeed Node
-            |. Parser.symbol "/"
-            |. Parser.spaces
-            |= Parser.lazy (\_ -> treeParser)
-            |. Parser.spaces
-            |. Parser.symbol "\\"
-            |. Parser.spaces
-            |= Parser.lazy (\_ -> treeParser)
-        , Parser.succeed Null
-        ]
 
 
 toNumber : Tree -> Int
