@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Bipuuk
+import Bipuuk.Circle
 import Browser
 import Element
 import Element.Background
@@ -29,12 +30,20 @@ main =
 type alias Model =
     { input : String
     , dictionary : Bipuuk.Dictionary
+    , error : Maybe String
+    , inspect : String
+    , circle : Html Msg
     }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { input = "", dictionary = Bipuuk.emptyDictionary }
+    ( { input = ""
+      , dictionary = Bipuuk.emptyDictionary
+      , error = Nothing
+      , inspect = ""
+      , circle = Bipuuk.Circle.none
+      }
     , Http.get { url = "dictionary.tsv", expect = Http.expectString GetDictionary }
     )
 
@@ -52,12 +61,33 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeText input ->
-            ( { model | input = input }, Cmd.none )
+            case Bipuuk.parse input of
+                Ok tree ->
+                    ( { model
+                        | input = input
+                        , error = Nothing
+                        , inspect = Bipuuk.inspect model.dictionary tree
+                        , circle = Bipuuk.Circle.render tree
+                      }
+                    , Cmd.none
+                    )
+
+                Err error ->
+                    ( { model
+                        | input = input
+                        , error = Just error
+                      }
+                    , Cmd.none
+                    )
 
         GetDictionary responce ->
             case responce of
                 Ok tsv ->
-                    ( { model | dictionary = Bipuuk.loadDictionary tsv }, Cmd.none )
+                    ( { model
+                        | dictionary = Bipuuk.loadDictionary tsv
+                      }
+                    , Cmd.none
+                    )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -107,16 +137,13 @@ view model =
                     , label = Element.Input.labelHidden "Input"
                     , spellcheck = False
                     }
+            , Maybe.withDefault Element.none <|
+                Maybe.map Element.text model.error
             , Element.column
                 [ Element.spacing 4
                 ]
               <|
                 List.map Element.text <|
-                    String.lines <|
-                        case Bipuuk.parse model.input of
-                            Ok tree ->
-                                Bipuuk.inspect model.dictionary tree
-
-                            Err error ->
-                                error
+                    String.lines model.inspect
+            , Element.html model.circle
             ]
