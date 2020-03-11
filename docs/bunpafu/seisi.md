@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/bunpafu/seisi/
+permalink: /bunpafu/seisi/
+redirect_from: /docs/bunpafu/seisi/
 title: 制詞
 ---
 

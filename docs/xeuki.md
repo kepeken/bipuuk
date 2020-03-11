@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/xeuki/
+permalink: /xeuki/
+redirect_from: /docs/xeuki/
 title: 様々な表記
 ---
 

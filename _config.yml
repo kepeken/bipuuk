@@ -1,5 +1,13 @@
 destination: ./.gh-pages/v0.3
 
+# Handling Reading
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - parser
+keep_files:
+  - parser
+
 # Plugins
 plugins:
   - jekyll-redirect-from

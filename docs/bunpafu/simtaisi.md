@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/bunpafu/simtaisi/
+permalink: /bunpafu/simtaisi/
+redirect_from: /docs/bunpafu/simtaisi/
 title: 心態詞
 ---
 

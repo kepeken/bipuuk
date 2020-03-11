@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/bangau/
+permalink: /bangau/
+redirect_from: /docs/bangau/
 title: 木のナンバリング
 ---
 

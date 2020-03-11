@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/kouzau/
+permalink: /kouzau/
+redirect_from: /docs/kouzau/
 title: データ構造について
 ---
 

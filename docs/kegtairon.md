@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/kegtairon/
+permalink: /kegtairon/
+redirect_from: /docs/kegtairon/
 title: 形態論
 ---
 
