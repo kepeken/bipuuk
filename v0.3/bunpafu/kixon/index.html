@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>基本的な文 | bipuuk</title>
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
+</head>
+
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+      <small>v0.3.1-alpha</small>
+    </header>
+    <nav class="docs-sidebar">
+      
+      <ul>
+  <li><a href="/bipuuk/v0.3/">概要</a></li>
+  <li><a href="/bipuuk/v0.3/kouzau/">データ構造</a></li>
+  <li><a href="/bipuuk/v0.3/xeuki/">様々な表記</a></li>
+  <li><a href="/bipuuk/v0.3/bangau/">木のナンバリング</a></li>
+  <li><a href="/bipuuk/v0.3/kegtairon/">形態論</a></li>
+  <li><span>文法</span>
+    <ul>
+      <li><a href="/bipuuk/v0.3/bunpafu/kixon/">基本的な文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/jokaku/">与格を使った文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/seisi/">制詞</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/simtaisi/">心態詞</a></li>
+    </ul>
+  </li>
+  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
+</ul>
+
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
+</ul>
+
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h1>基本的な文</h1>
+
+        <p>bipuuk での文の書き方と、基本的な文を紹介します。</p>
+
+<h2 id="述語">述語</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>14</td>
+      <td>述語</td>
+    </tr>
+    <tr>
+      <td>426</td>
+      <td>あたたかい</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ [426 あたたかい] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>あたたかい。</p>
+</blockquote>
+
+<p>接辞は右につけます。</p>
+
+<h2 id="主題">主題</h2>
+
+<p>bipuuk は主題優勢言語です。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td>主題</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>二人称</td>
+    </tr>
+    <tr>
+      <td>174</td>
+      <td>美しい</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [150 あなた] \ [5 題]
+\ / [174 美しい] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>あなたは美しい。</p>
+</blockquote>
+
+<p>主題は普通左側に来ます。</p>
+
+<p>日本語の「～は」には限定などの意味があるのに対して、bipuuk の <code class="highlighter-rouge">5</code> にまだそのような意味が設定されていないことに注意してください。</p>
+
+<h2 id="対格">対格</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15</td>
+      <td>対格</td>
+    </tr>
+    <tr>
+      <td>265</td>
+      <td>リンゴ</td>
+    </tr>
+    <tr>
+      <td>559</td>
+      <td>一人称</td>
+    </tr>
+    <tr>
+      <td>600</td>
+      <td>食べる</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [559 私] \ [5 題]
+\ / / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>私はリンゴを食べる。</p>
+</blockquote>
+
+<p>語順は未定です。</p>
+
+<h2 id="主格">主格</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>23</td>
+      <td>主格</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>大きい</td>
+    </tr>
+    <tr>
+      <td>235</td>
+      <td>ウサギ</td>
+    </tr>
+    <tr>
+      <td>332</td>
+      <td>耳</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [235 ウサギ] \ [5 題]
+\ / / [332 耳] \ [23 主]
+  \ / [40 大きい] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>ウサギは耳が大きい。</p>
+</blockquote>
+
+<h2 id="修飾">修飾</h2>
+
+<p>所有関係などを表すことができます。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>18</td>
+      <td>属格、修飾</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [150 あなた] \ [5 題]
+\ / / / [559 私] \ [18 属]
+    \ / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>あなたは私のリンゴを食べる。</p>
+</blockquote>
+
+<p>形容詞的な修飾にも使えます。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>自然数</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>471</td>
+      <td>赤い、赤</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / [559 私] \ [5 題]
+\ / / / [471 赤] \ [18 属]
+    \ / [265 リンゴ] \ [15 対]
+  \ / [600 食べる] \ [14 述]
+</code></pre></div></div>
+<blockquote>
+  <p>私は赤いリンゴを食べる。</p>
+</blockquote>
+
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
+</html>

@@ -1,94 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>形態論 | bipuuk</title>
-  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
-  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
-</head>
-
-<body>
-  <input type="checkbox" id="toggle">
-  <div class="docs-wrapper">
-    <header class="docs-header">
-      <label for="toggle" class="docs-header-toggle">≡</label>
-      <h1>bipuuk</h1>
-      <small>v0.3.0</small>
-    </header>
-    <nav class="docs-sidebar">
-      
-      <ul>
-  <li><a href="/bipuuk/v0.3/">概要</a></li>
-  <li><a href="/bipuuk/v0.3/docs/kouzau/">データ構造について</a></li>
-  <li><a href="/bipuuk/v0.3/docs/xeuki/">様々な表記</a></li>
-  <li><a href="/bipuuk/v0.3/docs/bangau/">木のナンバリング</a></li>
-  <li><a href="/bipuuk/v0.3/docs/kegtairon/">形態論</a></li>
-  <li><span>文法</span>
-    <ul>
-      <li><a href="/bipuuk/v0.3/docs/bunpafu/kixon/">基本的な文</a></li>
-      <li><a href="/bipuuk/v0.3/docs/bunpafu/jokaku/">与格を使った文</a></li>
-      <li><a href="/bipuuk/v0.3/docs/bunpafu/seisi/">制詞</a></li>
-      <li><a href="/bipuuk/v0.3/docs/bunpafu/simtaisi/">心態詞</a></li>
-    </ul>
-  </li>
-  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
-</ul>
-
-<hr />
-<ul>
-  <li><a href="/bipuuk/">master</a></li>
-  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
-  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
-</ul>
-
-    </nav>
-    <article class="docs-content">
-      <div class="container-lg px-3 my-5 markdown-body">
-
-        <h1>形態論</h1>
-
-        <h2 id="形態素">形態素</h2>
-
-<p>bipuuk には大きく分けて２つの形態素があります。</p>
-
-<h3 id="語根">語根</h3>
-
-<p>高さ 4 の木を <strong>語根</strong> とします。自然数表記では <code class="highlighter-rouge">26</code> ～ <code class="highlighter-rouge">676</code> に相当し、全部で 651 個あります。</p>
-
-<h3 id="接辞">接辞</h3>
-
-<p>高さ 0 ～ 3 の木を <strong>接辞</strong> とします。自然数表記では <code class="highlighter-rouge">0</code> ～ <code class="highlighter-rouge">25</code> に相当し、全部で 26 個あります。</p>
-
-<h2 id="形態素の連結">形態素の連結</h2>
-
-<h3 id="接辞--接辞">接辞 + 接辞</h3>
-
-<p>まず、接辞と接辞は連結することができません。なぜなら、連結してできる木の高さが 1 ～ 4 となってしまい、既存の形態素と被ってしまうからです。</p>
-
-<p>この制約によって bipuuk では木の形態素解析が一意にできるようになっています。</p>
-
-<h3 id="語幹--語根--語幹--語幹">語幹 := 語根 | (語幹 + 語幹)</h3>
-
-<p>語根と語根を連結すると、新たな辞書定義が生まれます。語根１つ以上のまとまりを <strong>語幹</strong> とします。（もともと語根、語基、語幹あたりの定義にブレがありますがここではそうします。）</p>
-
-<h3 id="語--語幹--接辞">語 := 語幹 + 接辞</h3>
-
-<p>語幹と接辞を連結すると <strong>語</strong> となります。語幹が意味内容、接辞が文法的役割を決定します。</p>
-
-<h3 id="語--語">語 + 語</h3>
-
-<p>文はこのような語の連結からなります。</p>
-
-
-      </div>
-    </article>
-  </div>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
-    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-  <script>anchors.add();</script> -->
-</body>
-
+<html lang="en-US">
+  <meta charset="utf-8">
+  <title>Redirecting&hellip;</title>
+  <link rel="canonical" href="/bipuuk/v0.3/kegtairon/">
+  <script>location="/bipuuk/v0.3/kegtairon/"</script>
+  <meta http-equiv="refresh" content="0; url=/bipuuk/v0.3/kegtairon/">
+  <meta name="robots" content="noindex">
+  <h1>Redirecting&hellip;</h1>
+  <a href="/bipuuk/v0.3/kegtairon/">Click here if you are not redirected.</a>
 </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>データ構造 | bipuuk</title>
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
+</head>
+
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+      <small>v0.3.1-alpha</small>
+    </header>
+    <nav class="docs-sidebar">
+      
+      <ul>
+  <li><a href="/bipuuk/v0.3/">概要</a></li>
+  <li><a href="/bipuuk/v0.3/kouzau/">データ構造</a></li>
+  <li><a href="/bipuuk/v0.3/xeuki/">様々な表記</a></li>
+  <li><a href="/bipuuk/v0.3/bangau/">木のナンバリング</a></li>
+  <li><a href="/bipuuk/v0.3/kegtairon/">形態論</a></li>
+  <li><span>文法</span>
+    <ul>
+      <li><a href="/bipuuk/v0.3/bunpafu/kixon/">基本的な文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/jokaku/">与格を使った文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/seisi/">制詞</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/simtaisi/">心態詞</a></li>
+    </ul>
+  </li>
+  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
+</ul>
+
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
+</ul>
+
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h1>データ構造</h1>
+
+        <p>bipuuk の基礎となっているのが <strong>木</strong> 、特に <strong>二分木</strong> と呼ばれるデータ構造です。</p>
+
+<h2 id="木構造">木構造</h2>
+
+<p>以下の図を見てください。</p>
+
+<p><img src="/bipuuk/v0.3/assets/img/bf7fc1cb-8a67-4008-96ef-eb606db42430.png" alt="二分木" /></p>
+
+<p>このマルのひとつひとつを <strong>節</strong>（node）といいます。節同士をつなぐ矢印を <strong>枝</strong>（edge）といいます。</p>
+
+<p>ひとつの節から下に向けて、いくつかの節がつながっています。この上側の節を <strong>親</strong>（parent）、下側の節を <strong>子</strong>（child）といいます。</p>
+
+<p>一番上の節を <strong>根</strong>（root）、末端のそれぞれの節を <strong>葉</strong>（leaf）といいます。</p>
+
+<p>このように、ひとつの節からいくつかの子、さらにそれらの子、……とつながっていく構造を <strong>木</strong>（tree）といいます。</p>
+
+<h2 id="二分木">二分木</h2>
+
+<p><strong>二分木</strong>（binary tree）は、木の中でも「ひとつの節は子を２つまでしか持てない」という制約のあるものです。</p>
+
+<p>ここでは子の左右が重要なので、左側に生えている子を <strong>左子</strong>、右側に生えている子を <strong>右子</strong> と呼ぶことにします。</p>
+
+<p><img src="/bipuuk/v0.3/assets/img/7f7ed600-e63a-4e8a-a950-1a7186188afa.png" alt="親と子" /></p>
+
+<h2 id="空">空</h2>
+
+<p>構造をより単純にするために <strong>空</strong>（null）を導入します。</p>
+
+<p>「左子を持たない」「右子を持たない」を「左に空を持つ」「右に空を持つ」と置き換えると、全ての節は子を２つ持つか空であることになります。葉は全て空になります。これにより以下のような形式的定義が可能になります。</p>
+
+<ul>
+  <li>空は木である。</li>
+  <li>左に木を持ち右に木を持つ節は木である。</li>
+  <li>以上によって得られるもののみが木である。</li>
+</ul>
+
+<blockquote>
+  <p>技術的には full binary tree と呼ばれるものです。</p>
+</blockquote>
+
+<h2 id="高さ">高さ</h2>
+
+<p>根から一番遠い葉までの枝の数を <strong>高さ</strong>（height）といいます。</p>
+
+<p><img src="/bipuuk/v0.3/assets/img/5a686f2d-a109-45ef-8bf6-302bcff8bf87.png" alt="高さ" /></p>
+
+<p>形式的には以下のように定義されます。</p>
+
+<ul>
+  <li>空の高さは <code class="highlighter-rouge">0</code> である。</li>
+  <li>左子の高さが <code class="highlighter-rouge">m</code>、右子の高さが <code class="highlighter-rouge">n</code> である節の高さは <code class="highlighter-rouge">max(m, n) + 1</code> である。</li>
+</ul>
+
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
+</html>

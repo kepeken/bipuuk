@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>与格を使った文 | bipuuk</title>
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
+</head>
+
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+      <small>v0.3.1-alpha</small>
+    </header>
+    <nav class="docs-sidebar">
+      
+      <ul>
+  <li><a href="/bipuuk/v0.3/">概要</a></li>
+  <li><a href="/bipuuk/v0.3/kouzau/">データ構造</a></li>
+  <li><a href="/bipuuk/v0.3/xeuki/">様々な表記</a></li>
+  <li><a href="/bipuuk/v0.3/bangau/">木のナンバリング</a></li>
+  <li><a href="/bipuuk/v0.3/kegtairon/">形態論</a></li>
+  <li><span>文法</span>
+    <ul>
+      <li><a href="/bipuuk/v0.3/bunpafu/kixon/">基本的な文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/jokaku/">与格を使った文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/seisi/">制詞</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/simtaisi/">心態詞</a></li>
+    </ul>
+  </li>
+  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
+</ul>
+
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
+</ul>
+
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h1>与格を使った文</h1>
+
+        <h2 id="嗜好感情">嗜好、感情</h2>
+
+<p>以下の２つは同じです。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 559 \ 23 \ 5
+\ / / 265 \ 15
+  \ / 176 \ 14
+</code></pre></div></div>
+<blockquote>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 1ST \ SBJ \ TOP
+\ / / apple \ OBJ
+  \ / like \ VT
+</code></pre></div>  </div>
+  <p>私（が）はリンゴを好む。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 559 \ 12 \ 5
+\ / / 265 \ 23
+  \ / 176 \ 9
+</code></pre></div></div>
+<blockquote>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 1ST \ DAT \ TOP
+\ / / apple \ SBJ
+  \ / like \ VI
+</code></pre></div>  </div>
+  <p>私（に）はリンゴが好き。</p>
+</blockquote>
+
+<h2 id="対象方向">対象、方向</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 559 \ 23 \ 5
+\ / / 150 \ 12
+  \ / / 265 \ 15
+    \ / 213 \ 14
+</code></pre></div></div>
+<blockquote>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ / / 1ST \ SBJ \ TOP
+\ / / 2ND \ DAT
+  \ / / apple \ OBJ
+    \ / give \ VT
+</code></pre></div>  </div>
+  <p>私（が）はあなたにリンゴをあげる。</p>
+</blockquote>
+
+<h2 id="様態">様態</h2>
+
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
+</html>

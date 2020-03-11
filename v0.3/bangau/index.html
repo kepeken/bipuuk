@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>木のナンバリング | bipuuk</title>
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
+  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
+</head>
+
+<body>
+  <input type="checkbox" id="toggle">
+  <div class="docs-wrapper">
+    <header class="docs-header">
+      <label for="toggle" class="docs-header-toggle">≡</label>
+      <h1>bipuuk</h1>
+      <small>v0.3.1-alpha</small>
+    </header>
+    <nav class="docs-sidebar">
+      
+      <ul>
+  <li><a href="/bipuuk/v0.3/">概要</a></li>
+  <li><a href="/bipuuk/v0.3/kouzau/">データ構造</a></li>
+  <li><a href="/bipuuk/v0.3/xeuki/">様々な表記</a></li>
+  <li><a href="/bipuuk/v0.3/bangau/">木のナンバリング</a></li>
+  <li><a href="/bipuuk/v0.3/kegtairon/">形態論</a></li>
+  <li><span>文法</span>
+    <ul>
+      <li><a href="/bipuuk/v0.3/bunpafu/kixon/">基本的な文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/jokaku/">与格を使った文</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/seisi/">制詞</a></li>
+      <li><a href="/bipuuk/v0.3/bunpafu/simtaisi/">心態詞</a></li>
+    </ul>
+  </li>
+  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
+</ul>
+
+<hr />
+<ul>
+  <li><a href="/bipuuk/">master</a></li>
+  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
+  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
+</ul>
+
+    </nav>
+    <article class="docs-content">
+      <div class="container-lg px-3 my-5 markdown-body">
+
+        <h1>木のナンバリング</h1>
+
+        <p>それぞれの木に一意な番号をふります。</p>
+
+<h2 id="方法">方法</h2>
+
+<p>以下のような表を考えます。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">x \ y</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">. .</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">25</td>
+      <td style="text-align: center">. .</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">. .</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">23</td>
+      <td style="text-align: center">. .</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">22</td>
+      <td style="text-align: center">. .</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">21</td>
+      <td style="text-align: center">. .</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>:</strong></td>
+      <td style="text-align: center">:</td>
+      <td style="text-align: center">:</td>
+      <td style="text-align: center">:</td>
+      <td style="text-align: center">:</td>
+      <td style="text-align: center">:</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>木から自然数への変換は以下の定義によって一意に定まります。</p>
+
+<ul>
+  <li>空の番号は <code class="highlighter-rouge">0</code> である。</li>
+  <li>左子の番号が <code class="highlighter-rouge">x</code>、右子の番号が <code class="highlighter-rouge">y</code> である木の番号は上の表の <code class="highlighter-rouge">(x, y)</code> を見る。</li>
+</ul>
+
+<p>逆に、自然数から木への変換も一意に定まります。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">0</code> は空である。</li>
+  <li><code class="highlighter-rouge">z</code> は上の表の <code class="highlighter-rouge">(x, y)</code> にあるとき、左子の番号が <code class="highlighter-rouge">x</code>、右子の番号が <code class="highlighter-rouge">y</code> であるような木である。</li>
+</ul>
+
+<p>計算は以下の擬似コードでできます。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">y</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">unpair</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="n">h</span> <span class="o">+</span> <span class="n">z</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="n">h</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="n">h</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="n">m</span> <span class="o">-</span> <span class="n">z</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="他の方法">他の方法</h2>
+
+<p>割り当て方は色々考えられます。現在は四角埋めに落ち着いていますが、過去に挙がった方法一覧と現在の方法が選ばれた理由を紹介しておきます。</p>
+
+<blockquote>
+  <p>数学的には自然数が自由マグマをなすような二項演算 <code class="highlighter-rouge">N × N -&gt; N</code> を考えればいい？</p>
+</blockquote>
+
+<h3 id="2べき">2べき</h3>
+
+<p><a href="https://twitter.com/kepeken/status/1029774623787765760">https://twitter.com/kepeken/status/1029774623787765760</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f(x, y) = 2 ** x * (2 * y + 1)
+</code></pre></div></div>
+
+<p>インフレが激しいため不採用です。</p>
+
+<h3 id="三角埋め">三角埋め</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">x \ y</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">15</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>後述の四角埋めのほうが都合が良かったので廃止しました。</p>
+
+<h3 id="四角埋め">四角埋め</h3>
+
+<p><a href="https://twitter.com/kepeken/status/1031492656528941059">https://twitter.com/kepeken/status/1031492656528941059</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">x \ y</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">25</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">24</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">23</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">22</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">21</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>現在採用している案です。特徴として番号順がそのまま高さ順になっているため、例えば木の高さによって品詞を決定すれば、</p>
+
+<ul>
+  <li>造語するとき自然数の範囲から選ぶだけで良い</li>
+  <li>単語が他の単語を部分木として含まないようにできる（一意分解できる）</li>
+</ul>
+
+<p>などの利点があることから採用しました。</p>
+
+<h3 id="往復埋め">往復埋め</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">x \ y</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">17</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">18</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">19</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">20</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: center">25</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">23</td>
+      <td style="text-align: center">22</td>
+      <td style="text-align: center">21</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>四角埋めに加わる特徴として、自然数の差が１である木同士の編集距離も１になっています。それによる利点が特に思いつかない割に計算が面倒なので、採用を見送っています。</p>
+
+<h3 id="z階数曲線">Z階数曲線</h3>
+
+<p><a href="https://ja.wikipedia.org/wiki/Z%E9%9A%8E%E6%95%B0%E6%9B%B2%E7%B7%9A">Z階数曲線 - Wikipedia</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">x \ y</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://twitter.com/Yuki_jukjis/status/1108569158529110016">Yuki さんの提案</a> によるものです。</p>
+
+<p>ビット演算で高速に処理ができることが利点です。</p>
+
+<p>文法を考えるにあたって四角埋めの性質が面白そうなのでZ階数曲線の採用は見送っていますが、Z階数曲線にも文法に利用できそうな性質があったら採用するかもしれません。</p>
+
+
+      </div>
+    </article>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+  <script>anchors.add();</script> -->
+</body>
+
+</html>
