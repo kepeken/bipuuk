@@ -1,5 +1,5 @@
 * [概要]({{ site.baseurl }}/)
-* [データ構造について]({{ site.baseurl }}/kouzau/)
+* [データ構造]({{ site.baseurl }}/kouzau/)
 * [様々な表記]({{ site.baseurl }}/xeuki/)
 * [木のナンバリング]({{ site.baseurl }}/bangau/)
 * [形態論]({{ site.baseurl }}/kegtairon/)
