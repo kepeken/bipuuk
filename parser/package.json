@@ -1,5 +1,8 @@
 {
   "name": "bipuuk",
+  "config": {
+    "destination": "../.gh-pages/v0.3/parser"
+  },
   "scripts": {
     "clean": "rimraf build",
     "start:html": "cpx src/index.html build -w",
@@ -9,7 +12,8 @@
     "build:elm": "elm make src/Main.elm --optimize --output=build/elm.optimized.js && google-closure-compiler --js=build/elm.optimized.js --js_output_file=build/elm.js && rimraf build/elm.optimized.js",
     "build:dictionary": "cpx ../dictionary.tsv build",
     "start": "run-p start:*",
-    "build": "run-s clean build:*"
+    "build": "run-s clean build:*",
+    "postbuild": "cpx build/**/* %npm_package_config_destination%"
   },
   "dependencies": {
     "cpx": "^1.5.0",
