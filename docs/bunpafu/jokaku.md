@@ -1,6 +1,7 @@
 ---
 layout: docs
-permalink: /docs/bunpafu/jokaku/
+permalink: /bunpafu/jokaku/
+redirect_from: /docs/bunpafu/jokaku/
 title: 与格を使った文
 ---
 

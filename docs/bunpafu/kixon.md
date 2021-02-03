@@ -1,7 +1,9 @@
 ---
 layout: docs
-permalink: /docs/bunpafu/kixon/
-redirect_from: /docs/kixon/
+permalink: /bunpafu/kixon/
+redirect_from:
+  - /docs/bunpafu/kixon/
+  - /docs/kixon/
 title: 基本的な文
 ---
 

@@ -1,9 +1,14 @@
 destination: ./.gh-pages
 
 # Handling Reading
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - parser
 keep_files:
   - v0.2
   - v0.3
+  - parser
 
 # Plugins
 plugins:
