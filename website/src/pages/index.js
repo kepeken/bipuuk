@@ -14,8 +14,23 @@ const features = [
         現在 v0.3.1 を執筆中です。
       </>
     ),
-    linkTo: 'docs/',
-    linkText: <>言語仕様を見る</>,
+    link: {
+      to: 'docs/',
+      text: <>言語仕様を見る</>,
+    },
+  },
+  {
+    title: '構文解析器',
+    description: (
+      <>
+        現在移植中です。しばらくは古いバージョンにアクセスできます。
+        <ul>
+          <li><Link to="https://kepeken.github.io/bipuuk/v0.3/parser/">v0.3.1</Link></li>
+          <li><Link to="https://kepeken.github.io/bipuuk/parser/">v0.3.0</Link></li>
+          <li><Link to="https://kepeken.github.io/bipuuk/v0.2/parser/">v0.2.1</Link></li>
+        </ul>
+      </>
+    ),
   },
   {
     title: 'GitHub',
@@ -24,8 +39,10 @@ const features = [
         このサイトとパーサのソースコードや辞書データは GitHub で公開しています。
       </>
     ),
-    linkTo: 'https://github.com/kepeken/bipuuk',
-    linkText: <>リポジトリを見る</>,
+    link: {
+      to: 'https://github.com/kepeken/bipuuk',
+      text: <>リポジトリを見る</>,
+    },
   },
   {
     title: 'Scrapbox',
@@ -34,12 +51,14 @@ const features = [
         言語仕様外のことは Scrapbox にまとめています。
       </>
     ),
-    linkTo: 'https://scrapbox.io/bipuuk/',
-    linkText: <>Scrapbox を見る</>,
+    link: {
+      to: 'https://scrapbox.io/bipuuk/',
+      text: <>Scrapbox を見る</>,
+    },
   },
 ];
 
-function Feature({title, description, linkTo, linkText}) {
+function Feature({title, description, link}) {
   return (
     <div className={clsx('col col--4 margin-bottom--lg', styles.feature)}>
       <div className="card">
@@ -49,9 +68,11 @@ function Feature({title, description, linkTo, linkText}) {
         <div className="card__body">
           <p>{description}</p>
         </div>
-        <div className="card__footer">
-          <Link className="button button--secondary button--block" to={useBaseUrl(linkTo)}>{linkText}</Link>
-        </div>
+        {link && (
+          <div className="card__footer">
+            <Link className="button button--secondary button--block" to={useBaseUrl(link.to)}>{link.text}</Link>
+          </div>
+        )}
       </div>
     </div>
   );
