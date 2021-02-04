@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /xeuki/
-redirect_from: /docs/xeuki/
+id: xeuki
 title: 様々な表記
+slug: /xeuki/
 ---
 
 bipuuk の特徴的な点として、表記方法があります。

@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /bangau/
-redirect_from: /docs/bangau/
+id: bangau
 title: 木のナンバリング
+slug: /bangau/
 ---
 
 それぞれの木に一意な番号をふります。

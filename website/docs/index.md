@@ -1,13 +1,13 @@
 ---
-layout: docs
-permalink: /
-redirect_from: /docs/
+id: index
 title: bipuuk
+sidebar_label: 概要
+slug: /
 ---
 
 **bipuuk** は けぺけん が制作している人工言語です。
 
-![bipuuk]({{ site.baseurl }}/bipuuk.svg)
+![bipuuk](../static/img/logo.svg)
 
 
 ## モユネ分類
@@ -24,7 +24,7 @@ title: bipuuk
 |TOL|他言語の流入/流用に対して寛容/無頓着である。|
 -->
 
-![moyune]({{ site.baseurl }}/assets/img/moyune-bipuuk.png)
+![moyune](../static/img/moyune-bipuuk.png)
 
 ## 説明
 

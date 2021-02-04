@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /bunpafu/simtaisi/
-redirect_from: /docs/bunpafu/simtaisi/
+id: simtaisi
 title: 心態詞
+slug: /bunpafu/simtaisi/
 ---
 
 ロジバンの心態詞に近い働きをするので、心態詞と呼ぶことにします。

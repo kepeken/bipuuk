@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /kegtairon/
-redirect_from: /docs/kegtairon/
+id: kegtairon
 title: 形態論
+slug: /kegtairon/
 ---
 
 ## 形態素

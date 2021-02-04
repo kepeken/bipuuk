@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /bunpafu/seisi/
-redirect_from: /docs/bunpafu/seisi/
+id: seisi
 title: 制詞
+slug: /bunpafu/seisi/
 ---
 
 ロジバンの（間／法／相）制詞に近い働きをするので、制詞と呼ぶことにします。

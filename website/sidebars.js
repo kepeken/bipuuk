@@ -1,6 +1,17 @@
 module.exports = {
-  someSidebar: {
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
-  },
+  docs: [
+    'index',
+    'kouzau',
+    'xeuki',
+    'bangau',
+    'kegtairon',
+    {
+      '文法': [
+        'bunpafu/kixon',
+        'bunpafu/jokaku',
+        'bunpafu/seisi',
+        'bunpafu/simtaisi',
+      ],
+    },
+  ],
 };

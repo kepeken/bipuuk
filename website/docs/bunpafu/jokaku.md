@@ -1,8 +1,7 @@
 ---
-layout: docs
-permalink: /bunpafu/jokaku/
-redirect_from: /docs/bunpafu/jokaku/
+id: jokaku
 title: 与格を使った文
+slug: /bunpafu/jokaku/
 ---
 
 ## 嗜好、感情

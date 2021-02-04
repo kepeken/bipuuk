@@ -1,10 +1,7 @@
 ---
-layout: docs
-permalink: /bunpafu/kixon/
-redirect_from:
-  - /docs/bunpafu/kixon/
-  - /docs/kixon/
+id: kixon
 title: 基本的な文
+slug: /bunpafu/kixon/
 ---
 
 bipuuk での文の書き方と、基本的な文を紹介します。
