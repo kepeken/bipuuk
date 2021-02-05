@@ -45,6 +45,9 @@ module.exports = {
       style: 'dark',
       copyright: `&copy; 2018-${new Date().getFullYear()} kepeken.`,
     },
+    prism: {
+      additionalLanguages: ['bnf'],
+    },
   },
   presets: [
     [
