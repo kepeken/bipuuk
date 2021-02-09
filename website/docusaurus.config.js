@@ -1,3 +1,4 @@
+const path = require('path');
 const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
 
@@ -61,6 +62,30 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      path.resolve(__dirname, 'plugins/docusaurus-plugin-alias'),
+      {
+        alias: {
+          '@bipuuk': path.resolve(__dirname, '..'),
+        },
+      },
+    ],
+    [
+      path.resolve(__dirname, 'plugins/docusaurus-plugin-elm'),
+      {
+        cwd: path.resolve(__dirname, '../parser'),
+      },
+    ],
+    [
+      path.resolve(__dirname, 'plugins/docusaurus-plugin-copy'),
+      {
+        patterns: [
+          '../dictionary.tsv',
+        ],
       },
     ],
   ],
