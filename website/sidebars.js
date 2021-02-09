@@ -13,5 +13,6 @@ module.exports = {
         'bunpafu/simtaisi',
       ],
     },
+    'rimgobun',
   ],
 };
