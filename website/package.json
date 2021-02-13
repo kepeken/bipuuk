@@ -15,6 +15,7 @@
     "@docusaurus/core": "2.0.0-alpha.70",
     "@docusaurus/preset-classic": "2.0.0-alpha.70",
     "@mdx-js/react": "^1.6.21",
+    "big.js": "^6.0.3",
     "clsx": "^1.1.1",
     "elm": "^0.19.1-5",
     "elm-hot-webpack-loader": "^1.1.8",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
     "@tsconfig/docusaurus": "^1.0.2",
+    "@types/big.js": "^6.0.2",
     "@types/parsimmon": "^1.10.6",
     "@types/react": "^17.0.1",
     "@types/react-helmet": "^6.1.0",
