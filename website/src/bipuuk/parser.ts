@@ -15,7 +15,7 @@ const language = P.createLanguage<Language>({
   },
 
   tree(r) {
-    return P.alt(r.dyck, r.number);
+    return P.alt(r.number, r.dyck);
   },
 
   dyck(r) {
