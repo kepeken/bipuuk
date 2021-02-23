@@ -26,7 +26,7 @@ export class System {
 
   constructor(root: Tree) {
     this.mass = 1e6;
-    this.attenuation = 0.74;
+    this.attenuation = 0.6;
 
     const positions = new WeakMap<Tree, number>();
     const velocities = new WeakMap<Tree, number>();
@@ -177,7 +177,7 @@ export class System {
     return this;
   }
 
-  render(): JSX.Element {
+  render(options: { className?: string } = {}): JSX.Element {
     const r = radius(height(this.root));
     const w = r * 2;
     const h = r * 2;
@@ -217,14 +217,14 @@ export class System {
     }
 
     return (
-      <svg width={w} height={h} viewBox={`${-w / 2} ${-h / 2} ${w} ${h}`}>
-        <circle cx={0} cy={0} r={radius(0)} stroke="black" fill="none" />
-        <path
-          d={path.build()}
-          strokeLinecap="round"
-          stroke="black"
-          fill="none"
-        />
+      <svg
+        className={options.className}
+        width={w}
+        height={h}
+        viewBox={`${-w / 2} ${-h / 2} ${w} ${h}`}
+      >
+        <circle cx={0} cy={0} r={radius(0)} fill="none" />
+        <path d={path.build()} strokeLinecap="round" fill="none" />
       </svg>
     );
   }

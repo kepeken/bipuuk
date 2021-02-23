@@ -1,0 +1,6 @@
+.renderer {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  stroke: var(--ifm-font-color-base);
+}
