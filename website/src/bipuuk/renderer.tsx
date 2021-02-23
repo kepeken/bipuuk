@@ -19,10 +19,15 @@ interface ReadonlyWeakMap<K extends object, V> {
 
 export class System {
   private readonly root: Tree;
+  private mass: number;
+  private attenuation: number;
   private positions: ReadonlyWeakMap<Tree, number>;
   private velocities: ReadonlyWeakMap<Tree, number>;
 
   constructor(root: Tree) {
+    this.mass = 1e6;
+    this.attenuation = 0.74;
+
     const positions = new WeakMap<Tree, number>();
     const velocities = new WeakMap<Tree, number>();
 
@@ -117,9 +122,6 @@ export class System {
     const positions = new WeakMap<Tree, number>();
     const velocities = new WeakMap<Tree, number>();
 
-    const mass = 1e6;
-    const attenuation = 0.74;
-
     const queue: [Tree, number][] = [];
     queue.push([this.root, 0]);
     while (queue.length) {
@@ -129,7 +131,7 @@ export class System {
       let vel = this.velocities.get(node)!;
       const force = forces.get(node)!;
 
-      vel = (vel + force / mass) * attenuation;
+      vel = (vel + force / this.mass) * this.attenuation;
       delta += vel;
       pos += delta;
 
@@ -143,9 +145,35 @@ export class System {
     this.velocities = velocities;
   }
 
+  private calculateMomentum(): number {
+    let sum = 0;
+    const queue: Tree[] = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let node = queue.shift()!;
+      if (isLeaf(node)) continue;
+      const vel = this.velocities.get(node)!;
+      sum += this.mass * vel ** 2;
+      queue.push(node.left);
+      queue.push(node.right);
+    }
+    return sum;
+  }
+
   tick(): this {
     const forces = this.calculateForces();
     this.updateStates(forces);
+    return this;
+  }
+
+  stabilize(): this {
+    const threshold = 0.1;
+    const limit = 10000;
+    for (let i = 0; i < limit; i++) {
+      this.tick();
+      const p = this.calculateMomentum();
+      if (p < threshold) break;
+    }
     return this;
   }
 
