@@ -24,7 +24,9 @@ function replaceLeaves(tree: Tree, replacement: () => Tree): Tree {
 const Language = P.createLanguage<{
   Start: Tree;
   Tree: Tree;
-  Dyck: Tree;
+  NonEmptyTree: Tree;
+  Branch: Tree;
+  Leaf: Tree;
   Number: Tree;
   Word: Tree;
 }>({
@@ -33,22 +35,23 @@ const Language = P.createLanguage<{
   },
 
   Tree(r) {
-    return P.alt(r.Number, r.Word, r.Dyck);
+    return P.alt(r.Number, r.Word, r.Branch, r.Leaf);
   },
 
-  Dyck(r) {
-    return P.alt(
-      P.seqObj<{ left: Tree; right: Tree }>(
-        P.string('/'),
-        P.optWhitespace,
-        ['left', r.Tree],
-        P.optWhitespace,
-        P.string('\\'),
-        P.optWhitespace,
-        ['right', r.Tree]
-      ).map(({ left, right }) => createBranch(left, right)),
-      P.succeed(null).map(() => createLeaf())
+  NonEmptyTree(r) {
+    return P.alt(r.Number, r.Word, r.Branch);
+  },
+
+  Branch(r) {
+    return P.seqMap(
+      P.string('/').then(P.optWhitespace).then(r.Tree).skip(P.optWhitespace),
+      P.alt(P.string('\\').then(P.optWhitespace).then(r.Tree), r.NonEmptyTree),
+      createBranch
     );
+  },
+
+  Leaf() {
+    return P.succeed(null).map(createLeaf);
   },
 
   Number() {
