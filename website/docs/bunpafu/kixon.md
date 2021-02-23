@@ -4,6 +4,8 @@ title: 基本的な文
 slug: /bunpafu/kixon/
 ---
 
+import Renderer from '@components/Renderer';
+
 bipuuk での文の書き方と、基本的な文を紹介します。
 
 ## 述語
@@ -20,15 +22,21 @@ Ntio
 ```
 > あたたかい。
 
+<Renderer text="Ntio" />
+
 ```
 Cwio
 ```
 > 猫だ。
 
+<Renderer text="Cwio" />
+
 ```
 Syio
 ```
 > 走る。
+
+<Renderer text="Syio" />
 
 語幹に述語を表す接辞を付けることで述語になります。述語はそれ単体で文になります。
 
@@ -51,6 +59,8 @@ Syio
 |あたたかい|猫が|
 > 猫はあたたかい。
 
+<Renderer text="/Ntio Cwiu" />
+
 ```
 /Cwio \Kbiu
 ```
@@ -59,6 +69,8 @@ Syio
 |猫である|あなたが|
 > あなたは猫だ。
 
+<Renderer text="/Cwio Kbiu" />
+
 ```
 /Syio \Qxiu
 ```
@@ -66,6 +78,8 @@ Syio
 |---|---|
 |走る|私が|
 > 私は走る。
+
+<Renderer text="/Syio Qxiu" />
 
 述語ごとに何をどの格として取るかが決まっています。名詞性のある単語であればその名詞によって記述できる対象、動詞性のある単語であればその動作主が `iu` 格で表されます。
 
@@ -89,6 +103,8 @@ Syio
 |食べる|私が|リンゴを|
 > 私はリンゴを食べる。
 
+<Renderer text="//Yxio Qxiu Pfeo" />
+
 動詞性のある単語であればその対象が `eo` 格で表されます。
 
 語順は未定です。
@@ -111,6 +127,8 @@ Syio
 |あなたは|美しい|
 > あなたは美しい。
 
+<Renderer text="/Kbia Luio" />
+
 日本語の「～は」には限定などの意味があるのに対して、bipuuk の `ia` にまだそのような意味が設定されていないことに注意してください。
 
 主題と主格を組み合わせた表現も可能です。
@@ -128,6 +146,8 @@ Syio
 |---|---|---|
 |ウサギは|大きい|耳が|
 > ウサギは耳が大きい。
+
+<Renderer text="/Ngia /Coio Rdiu" />
 
 
 <!--
