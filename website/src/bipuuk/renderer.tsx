@@ -132,7 +132,7 @@ export class System {
       const force = forces.get(node)!;
 
       vel = (vel + force / this.mass) * this.attenuation;
-      delta += vel;
+      if (node !== this.root) delta += vel;
       pos += delta;
 
       positions.set(node, pos);
