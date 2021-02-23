@@ -1,45 +1,104 @@
-import { createBranch, createLeaf, Tree } from './tree';
+import { createBranch, createLeaf, isLeaf, Tree } from './tree';
 import { fromDigits } from './numbering';
 import P from 'parsimmon';
 
-interface Language {
-  start: Tree;
-  tree: Tree;
-  dyck: Tree;
-  number: Tree;
+const TABLE = 'aeioubcdfghjklmnpqrstvwxyz';
+
+function fromWordRoot(wordRoot: string): Tree {
+  const left = fromDigits(String(TABLE.indexOf(wordRoot[0])));
+  const right = fromDigits(String(TABLE.indexOf(wordRoot[1])));
+  return createBranch(left, right);
 }
 
-const language = P.createLanguage<Language>({
-  start(r) {
-    return r.tree.trim(P.optWhitespace);
+function replaceLeaves(tree: Tree, replacement: () => Tree): Tree {
+  if (isLeaf(tree)) {
+    return replacement();
+  } else {
+    return createBranch(
+      replaceLeaves(tree.left, replacement),
+      replaceLeaves(tree.right, replacement)
+    );
+  }
+}
+
+const Language = P.createLanguage<{
+  Start: Tree;
+  Tree: Tree;
+  Dyck: Tree;
+  Number: Tree;
+  Word: Tree;
+}>({
+  Start(r) {
+    return r.Tree.trim(P.optWhitespace);
   },
 
-  tree(r) {
-    return P.alt(r.number, r.dyck);
+  Tree(r) {
+    return P.alt(r.Number, r.Word, r.Dyck);
   },
 
-  dyck(r) {
+  Dyck(r) {
     return P.alt(
       P.seqObj<{ left: Tree; right: Tree }>(
         P.string('/'),
         P.optWhitespace,
-        ['left', r.tree],
+        ['left', r.Tree],
         P.optWhitespace,
         P.string('\\'),
         P.optWhitespace,
-        ['right', r.tree]
+        ['right', r.Tree]
       ).map(({ left, right }) => createBranch(left, right)),
       P.succeed(null).map(() => createLeaf())
     );
   },
 
-  number() {
+  Number() {
     return P.regexp(/0|[1-9][0-9]*/).map(fromDigits);
+  },
+
+  Word() {
+    return P.regexp(/(?:[a-z]{2})+/i).chain((word) => {
+      const wordRoots = word
+        .toLowerCase()
+        .match(/[a-z]{2}/g)!
+        .map(fromWordRoot);
+
+      const result = Morphology.Word.parse(word);
+      if (result.status) {
+        const tree = replaceLeaves(result.value, () => wordRoots.shift()!);
+        return P.succeed(tree);
+      } else {
+        return P.fail(`word`);
+      }
+    });
+  },
+});
+
+const Morphology = P.createLanguage<{
+  Word: Tree;
+  Structure: Tree;
+  Suffix: Tree;
+}>({
+  Word(r) {
+    return P.alt(
+      P.regexp(/[A-Z]/).then(P.seqMap(r.Structure, r.Suffix, createBranch)),
+      P.regexp(/[a-z]/).then(r.Structure)
+    );
+  },
+
+  Structure(r) {
+    return P.alt(
+      P.regexp(/[A-Z]/).then(P.seqMap(r.Structure, r.Structure, createBranch)),
+      P.regexp(/[a-z]/).map(createLeaf)
+    );
+  },
+
+  Suffix() {
+    return P.regexp(/[a-z]{2}/).map(createLeaf);
   },
 });
 
 export type Result = P.Result<Tree>;
 
 export function parse(input: string): P.Result<Tree> {
-  return language.start.parse(input);
+  return Language.Start.parse(input);
 }
