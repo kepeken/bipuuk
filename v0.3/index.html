@@ -1,99 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>bipuuk | bipuuk</title>
-  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/style.css">
-  <link rel="stylesheet" href="/bipuuk/v0.3/assets/css/docs.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.70">
+<link rel="alternate" type="application/rss+xml" href="/bipuuk/v0.3/blog/rss.xml" title="bipuuk Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/bipuuk/v0.3/blog/atom.xml" title="bipuuk Blog Atom Feed">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"><title data-react-helmet="true">bipuuk</title><meta data-react-helmet="true" property="og:title" content="bipuuk"><meta data-react-helmet="true" name="description" content="Description will go into a meta tag in &lt;head /&gt;"><meta data-react-helmet="true" property="og:description" content="Description will go into a meta tag in &lt;head /&gt;"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="shortcut icon" href="/bipuuk/v0.3/img/favicon.ico"><script data-react-helmet="true">document.addEventListener("DOMContentLoaded",(function(){var n=document.getElementById("base-url-issue-banner-container");if(n){var e=window.location.pathname,t="/"===e.substr(-1)?e:e+"/";n.innerHTML=t}}))</script><link rel="stylesheet" href="/bipuuk/v0.3/styles.ba7dfcaa.css">
+<link rel="preload" href="/bipuuk/v0.3/styles.ce71ed51.js" as="script">
+<link rel="preload" href="/bipuuk/v0.3/runtime~main.54e18d33.js" as="script">
+<link rel="preload" href="/bipuuk/v0.3/main.d9661faa.js" as="script">
+<link rel="preload" href="/bipuuk/v0.3/1.fde45036.js" as="script">
+<link rel="preload" href="/bipuuk/v0.3/2.05823da0.js" as="script">
+<link rel="preload" href="/bipuuk/v0.3/c4f5d8e4.11343aba.js" as="script">
 </head>
-
 <body>
-  <input type="checkbox" id="toggle">
-  <div class="docs-wrapper">
-    <header class="docs-header">
-      <label for="toggle" class="docs-header-toggle">≡</label>
-      <h1>bipuuk</h1>
-      <small>v0.3.1-alpha</small>
-    </header>
-    <nav class="docs-sidebar">
-      
-      <ul>
-  <li><a href="/bipuuk/v0.3/">概要</a></li>
-  <li><a href="/bipuuk/v0.3/kouzau/">データ構造</a></li>
-  <li><a href="/bipuuk/v0.3/xeuki/">様々な表記</a></li>
-  <li><a href="/bipuuk/v0.3/bangau/">木のナンバリング</a></li>
-  <li><a href="/bipuuk/v0.3/kegtairon/">形態論</a></li>
-  <li><span>文法</span>
-    <ul>
-      <li><a href="/bipuuk/v0.3/bunpafu/kixon/">基本的な文</a></li>
-      <li><a href="/bipuuk/v0.3/bunpafu/jokaku/">与格を使った文</a></li>
-      <li><a href="/bipuuk/v0.3/bunpafu/seisi/">制詞</a></li>
-      <li><a href="/bipuuk/v0.3/bunpafu/simtaisi/">心態詞</a></li>
-    </ul>
-  </li>
-  <li><a href="/bipuuk/v0.3/parser/">パーサ</a></li>
-</ul>
-
-<hr />
-<ul>
-  <li><a href="/bipuuk/">master</a></li>
-  <li><a href="/bipuuk/v0.3/">v0.3</a></li>
-  <li><a href="/bipuuk/v0.2/">v0.2</a></li>
-</ul>
-
-    </nav>
-    <article class="docs-content">
-      <div class="container-lg px-3 my-5 markdown-body">
-
-        <h1>bipuuk</h1>
-
-        <p><strong>bipuuk</strong> は けぺけん が制作している人工言語です。</p>
-
-<p><img src="/bipuuk/v0.3/bipuuk.svg" alt="bipuuk" /></p>
-
-<h2 id="モユネ分類">モユネ分類</h2>
-
-<p><a href="http://ja.conlinguistics.wikia.com/wiki/%E3%83%A2%E3%83%A6%E3%83%8D%E5%88%86%E9%A1%9E">モユネ分類 | 人工言語学 Wiki</a></p>
-
-<!--
-|タグ|説明|
-|---|---|
-|ART|美的楽しみを志向する。|
-|EXP|その言語の仕様がうまく機能するか確かめることを志向する。|
-|LIT|主たる形態として書記を使用することを志向する。|
-|JOK|何らかの事物についての風刺や冗談としてのものを志向する。|
-|TOL|他言語の流入/流用に対して寛容/無頓着である。|
--->
-
-<p><img src="/bipuuk/v0.3/assets/img/moyune-bipuuk.png" alt="moyune" /></p>
-
-<h2 id="説明">説明</h2>
-
-<ul>
-  <li>bipuuk は二分木というデータ構造を基本とする人工言語です。</li>
-  <li>自然言語の音声の側面を持ちません。</li>
-  <li>主な表現形式として視覚的なもの、テキストによるもの、自然数との対応などがあります。</li>
-  <li>特に視覚的な表現として様々なものを許容しており、美的楽しみを志向する側面を持ちます。</li>
-  <li>テキストによる表現では原始的な記法から始めて、糖衣構文を導入して人間が書きやすくなることを目指します。</li>
-</ul>
-
-<h2 id="その他">その他</h2>
-
-<ul>
-  <li>名前の由来はフィンランド語で「二分木語」を意味する “binääripuukieli”、および英語で「二股に分かれること」を意味する “bifurcation” です。</li>
-  <li>和製の人工言語にはよく「◯語」（◯は漢字一文字）のような略称がつけられる風潮があります。それに倣って略称を「众語」とします。</li>
-</ul>
-
-
-      </div>
-    </article>
-  </div>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
-    integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-  <script>anchors.add();</script> -->
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
+<div class="baseUrlIssueBanner_1-cE" style="border:solid red thick;background-color:#ffe6b3;margin:20px;padding:20px;font-size:20px"><p style="font-weight:bold;font-size:30px">Your Docusaurus site did not load properly.</p><p>A very common reason is a wrong site <a href="https://v2.docusaurus.io/docs/docusaurus.config.js/#baseurl" style="font-weight:bold">baseUrl configuration</a>.</p><p>Current configured baseUrl = <span style="font-weight:bold;color:red">/bipuuk/v0.3/</span> </p><p>We suggest trying baseUrl = <span style="font-weight:bold;color:green" id="base-url-issue-banner-container"></span> </p></div><nav aria-label="Skip navigation links"><button type="button" tabindex="0" class="skipToContent_11B0">Skip to main content</button></nav><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg aria-label="Menu" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a class="navbar__brand" href="/bipuuk/v0.3/"><img src="/bipuuk/v0.3/img/logo.svg" alt="bipuuk logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/bipuuk/v0.3/img/logo.svg" alt="bipuuk logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">bipuuk</strong></a><a class="navbar__item navbar__link" href="/bipuuk/v0.3/docs/">Docs</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/kepeken/bipuuk" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub</a><div class="react-toggle react-toggle--disabled displayOnlyInLargeViewport_2N3Q"><div class="react-toggle-track"><div class="react-toggle-track-check"><span class="toggle_3NWk">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_3NWk">🌞</span></div></div><div class="react-toggle-thumb"></div><input type="checkbox" disabled="" aria-label="Dark mode toggle" class="react-toggle-screenreader-only"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a class="navbar__brand" href="/bipuuk/v0.3/"><img src="/bipuuk/v0.3/img/logo.svg" alt="bipuuk logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/bipuuk/v0.3/img/logo.svg" alt="bipuuk logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">bipuuk</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/bipuuk/v0.3/docs/">Docs</a></li><li class="menu__list-item"><a href="https://github.com/kepeken/bipuuk" target="_blank" rel="noopener noreferrer" class="menu__link">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><header class="hero hero--primary heroBanner_2Ftp"><div class="container"><h1 class="hero__title">bipuuk</h1><p class="hero__subtitle">A constructed language</p></div></header><main><section class="features_P2SU"><div class="container"><div class="row"><div class="col col--4 margin-bottom--lg"><div class="card"><div class="card__header"><h3>言語仕様</h3></div><div class="card__body"><p>現在 v0.3.1 を執筆中です。</p></div><div class="card__footer"><a class="button button--secondary button--block" href="/bipuuk/v0.3/docs/">言語仕様を見る</a></div></div></div><div class="col col--4 margin-bottom--lg"><div class="card"><div class="card__header"><h3>構文解析器</h3></div><div class="card__body"><p>現在移植中です。しばらくは古いバージョンにアクセスできます。</p><ul><li><a href="https://kepeken.github.io/bipuuk/v0.3/parser/" target="_blank" rel="noopener noreferrer">v0.3.1</a></li><li><a href="https://kepeken.github.io/bipuuk/parser/" target="_blank" rel="noopener noreferrer">v0.3.0</a></li><li><a href="https://kepeken.github.io/bipuuk/v0.2/parser/" target="_blank" rel="noopener noreferrer">v0.2.1</a></li></ul><p></p></div></div></div><div class="col col--4 margin-bottom--lg"><div class="card"><div class="card__header"><h3>GitHub</h3></div><div class="card__body"><p>このサイトとパーサのソースコードや辞書データは GitHub で公開しています。</p></div><div class="card__footer"><a href="https://github.com/kepeken/bipuuk" target="_blank" rel="noopener noreferrer" class="button button--secondary button--block">リポジトリを見る</a></div></div></div><div class="col col--4 margin-bottom--lg"><div class="card"><div class="card__header"><h3>Scrapbox</h3></div><div class="card__body"><p>言語仕様外のことは Scrapbox にまとめています。</p></div><div class="card__footer"><a href="https://scrapbox.io/bipuuk/" target="_blank" rel="noopener noreferrer" class="button button--secondary button--block">Scrapbox を見る</a></div></div></div></div></div></section></main></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">&copy; 2018-2025 kepeken.</div></div></div></footer></div>
+<script src="/bipuuk/v0.3/styles.ce71ed51.js"></script>
+<script src="/bipuuk/v0.3/runtime~main.54e18d33.js"></script>
+<script src="/bipuuk/v0.3/main.d9661faa.js"></script>
+<script src="/bipuuk/v0.3/1.fde45036.js"></script>
+<script src="/bipuuk/v0.3/2.05823da0.js"></script>
+<script src="/bipuuk/v0.3/c4f5d8e4.11343aba.js"></script>
 </body>
-
 </html>
