@@ -6,7 +6,7 @@ module.exports = {
   title: 'bipuuk',
   tagline: 'A constructed language',
   url: 'https://kepeken.github.io',
-  baseUrl: '/bipuuk/',
+  baseUrl: '/bipuuk/v0.3/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',

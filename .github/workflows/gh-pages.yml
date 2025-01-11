@@ -1,0 +1,58 @@
+name: gh-pages
+
+on:
+  push:
+    branches:
+      - v0.3
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          cache: 'yarn'
+          cache-dependency-path: website/yarn.lock
+
+      - run: |
+          yarn install --frozen-lockfile
+          yarn build
+          mv ./build /tmp/build
+        working-directory: website
+
+      - run: |
+          curl -L -o elm.gz https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz
+          gunzip elm.gz
+          chmod +x elm
+          ./elm make --optimize --output=elm.js ./src/Main.elm
+          npm i google-closure-compiler@20200224 -g
+          google-closure-compiler --js=elm.js --js_output_file=elm.min.js
+          mkdir /tmp/build/parser
+          cp src/index.html /tmp/build/parser/index.html
+          cp elm.min.js /tmp/build/parser/elm.js
+          cp ../dictionary.tsv /tmp/build/parser/dictionary.tsv
+        working-directory: parser
+
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - run: |
+          destination=./v0.3
+          rm -rf $destination
+          mv /tmp/build $destination
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy ${{ github.sha }} (${{ github.ref_name }})" -m "compare: ${{ github.event.compare }}"
+          git push origin gh-pages
