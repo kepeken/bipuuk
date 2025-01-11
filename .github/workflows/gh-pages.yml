@@ -15,18 +15,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - run: corepack enable
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'yarn'
-          cache-dependency-path: website/yarn.lock
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
 
       - run: |
-          yarn install --frozen-lockfile
-          yarn build
+          npm ci
+          npm run build
           mv ./build /tmp/build
         working-directory: website
 
