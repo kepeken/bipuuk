@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start --host 0.0.0.0 --no-open",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -12,40 +12,25 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.70",
-    "@docusaurus/preset-classic": "2.0.0-alpha.70",
-    "@mdx-js/react": "^1.6.21",
-    "big.js": "^6.0.3",
-    "clsx": "^1.1.1",
-    "elm": "^0.19.1-5",
-    "elm-hot-webpack-loader": "^1.1.8",
-    "elm-webpack-loader": "^7.0.1",
-    "parsimmon": "^1.16.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "rehype-katex": "^4.0.0",
-    "remark-math": "^3.0.1"
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "@mdx-js/react": "^3.1.0",
+    "big.js": "^6.2.2",
+    "clsx": "^2.1.1",
+    "parsimmon": "^1.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
-    "@tsconfig/docusaurus": "^1.0.2",
-    "@types/big.js": "^6.0.2",
-    "@types/parsimmon": "^1.10.6",
-    "@types/react": "^17.0.1",
-    "@types/react-helmet": "^6.1.0",
-    "@types/react-router-dom": "^5.1.7",
-    "typescript": "^4.1.5"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "@docusaurus/types": "^3.7.0",
+    "@types/big.js": "^6.2.2",
+    "@types/parsimmon": "^1.10.9",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "typescript": "^5.7.3"
   }
 }

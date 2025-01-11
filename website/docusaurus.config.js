@@ -1,5 +1,5 @@
 const path = require('path');
-const remarkMath = require('remark-math');
+import remarkMath from 'remark-math';
 const rehypeKatex = require('rehype-katex');
 
 module.exports = {

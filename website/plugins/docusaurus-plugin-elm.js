@@ -12,7 +12,6 @@ module.exports = function (context, options) {
               test: /\.elm$/,
               exclude: [/elm-stuff/, /node_modules/],
               use: [
-                utils.getCacheLoader(isServer),
                 'elm-hot-webpack-loader',
                 {
                   loader: 'elm-webpack-loader',
@@ -20,7 +19,7 @@ module.exports = function (context, options) {
                     cwd: options.cwd,
                   },
                 },
-              ].filter(Boolean),
+              ],
             },
           ],
         },
