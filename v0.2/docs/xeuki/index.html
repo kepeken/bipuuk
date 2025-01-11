@@ -52,7 +52,7 @@
 
 <p>冒頭に挙げたような、二分木構造をそのまま描くものです。</p>
 
-<p>変種として、葉（後述する自然数表記における <code class="highlighter-rouge">0</code>）を省略するかどうかが考えられます。</p>
+<p>変種として、葉（後述する自然数表記における <code class="language-plaintext highlighter-rouge">0</code>）を省略するかどうかが考えられます。</p>
 
 <h2 id="h木表記">H木表記</h2>
 
@@ -78,7 +78,7 @@
 
 <p>対応する括弧の列です。木の再帰的な構造を利用しており、以下の文法からなります。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tree&gt; := "" | "(" &lt;tree&gt; ")" &lt;tree&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tree&gt; := "" | "(" &lt;tree&gt; ")" &lt;tree&gt;
 </code></pre></div></div>
 
 <p>変種として括弧を前置するか後置するかが考えられますが、前置のほうが左再帰が無いので都合がいい気がします。</p>
@@ -91,7 +91,7 @@
 
 <p>スライムさんの提案によるものです。以下の文法からなります。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tree&gt; := &lt;leaf&gt; | "/" &lt;tree&gt; &lt;tree&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tree&gt; := &lt;leaf&gt; | "/" &lt;tree&gt; &lt;tree&gt;
 &lt;leaf&gt; := 自然数表記など何らかのトークン
 </code></pre></div></div>
 
