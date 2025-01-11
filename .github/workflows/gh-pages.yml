@@ -1,0 +1,33 @@
+name: gh-pages
+
+on:
+  push:
+    branches:
+      - v0.2
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/jekyll-build-pages@v1
+
+      - run: |
+          sudo chown -R $USER:$USER ./_site
+          mv ./_site ${{ runner.temp }}/_site
+
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - run: |
+          destination=./v0.2
+          rm -rf $destination
+          mv ${{ runner.temp }}/_site $destination
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy ${{ github.sha }} (${{ github.ref_name }})" -m "compare: ${{ github.event.compare }}"
+          git push origin gh-pages
