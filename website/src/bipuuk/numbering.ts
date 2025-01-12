@@ -1,13 +1,13 @@
 import * as Tree from './tree';
-import Big, { Comparison, RoundingMode } from 'big.js';
+import Big, { Comparison } from 'big.js';
 
 // 小数点以下を切り下げる。
 Big.DP = 0;
-Big.RM = 0 as RoundingMode.RoundDown;
+Big.RM = Big.roundDown;
 
-const LT = -1 as Comparison.LT;
-const EQ = 0 as Comparison.EQ;
-const GT = 1 as Comparison.GT;
+const LT = -1 satisfies Comparison;
+const EQ = 0 satisfies Comparison;
+const GT = 1 satisfies Comparison;
 
 // function pair(x, y) {
 //   if (x < y) return (y + 1) ** 2 - x;

@@ -9,7 +9,8 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
@@ -28,6 +29,7 @@
     "@docusaurus/tsconfig": "^3.7.0",
     "@docusaurus/types": "^3.7.0",
     "@types/big.js": "^6.2.2",
+    "@types/node": "^22.10.5",
     "@types/parsimmon": "^1.10.9",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",

@@ -1,8 +1,9 @@
-const path = require('path');
+import type { Config } from '@docusaurus/types';
+import path from 'node:path';
 import remarkMath from 'remark-math';
-const rehypeKatex = require('rehype-katex');
+import rehypeKatex from 'rehype-katex';
 
-module.exports = {
+const config: Config = {
   title: 'bipuuk',
   tagline: 'A constructed language',
   url: 'https://kepeken.github.io',
@@ -91,3 +92,5 @@ module.exports = {
     ],
   ],
 };
+
+export default config;
