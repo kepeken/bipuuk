@@ -1,0 +1,8 @@
+{
+  "workspaces": [
+    "website"
+  ],
+  "scripts": {
+    "start": "npm -w website start"
+  }
+}

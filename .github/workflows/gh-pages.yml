@@ -16,13 +16,11 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          cache-dependency-path: website/package-lock.json
 
       - run: |
-          npm ci
-          npm run build
-          mv ./build /tmp/build
-        working-directory: website
+          npm -w website ci
+          npm -w website run build
+          mv ./website/build /tmp/build
 
       - run: |
           curl -L -o elm.gz https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz
